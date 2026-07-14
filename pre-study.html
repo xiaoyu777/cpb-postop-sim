@@ -1003,7 +1003,7 @@ blockquote.quote cite{
       </div>
       <div class="nav-row t">
         <span class="row-lbl">★ 自测</span>
-        <a href="#quiz"><span class="num">Q</span>8 题通关</a>
+        <a href="#quiz" id="navQuizLink"><span class="num">Q</span>8 题通关</a>
       </div>
     </nav>
   </div>
@@ -1021,7 +1021,7 @@ blockquote.quote cite{
     <div class="byline">
       <div><div class="label">Audience</div><div class="val">ICU 专科医师规培 (PGY 2-3)</div></div>
       <div><div class="label">Standards</div><div class="val">INACSL SOBP · 2021 住培指南</div></div>
-      <div><div class="label">Pass Threshold</div><div class="val">6/8 解锁现场模拟</div></div>
+      <div><div class="label">Pass Threshold</div><div class="val" id="passThresholdVal">6/8 解锁现场模拟</div></div>
     </div>
 
     <!-- 时间线 -->
@@ -1793,7 +1793,7 @@ blockquote.quote cite{
 
 <!-- ==================== 自测 ==================== -->
 <section class="quiz-section" id="quiz">
-  <h2 style="margin-bottom:12px;font-size:26px">自测 · 8 道题 · 6 题通过</h2>
+  <h2 style="margin-bottom:12px;font-size:26px" id="quizHeading">自测 · 8 道题 · 6 题通过</h2>
   <p class="quiz-intro">前 4 题对应情境 A，后 4 题对应情境 B。每题只有一个<strong>最佳</strong>答案。得分 ≥ 6/8 解锁现场模拟资格。</p>
 
   <div id="quizContainer"></div>
@@ -2335,8 +2335,16 @@ function applyMode(mode){
   // 4.5 更新后测题目数显示
   const ansTotal = document.getElementById('answeredTotal');
   if(ansTotal) ansTotal.textContent = cfg.quizCount;
-  // 找到自测引导段落，更新文案
-  const quizDesc = document.querySelector('#quiz .lede');
+  // 自测区标题、目录链接、Pass Threshold 一并跟随题量
+  const quizHeading = document.getElementById('quizHeading');
+  if(quizHeading) quizHeading.textContent = `自测 · ${cfg.quizCount} 道题 · ${cfg.passScore} 题通过`;
+  const navQuizLink = document.getElementById('navQuizLink');
+  if(navQuizLink) navQuizLink.innerHTML = `<span class="num">Q</span>${cfg.quizCount} 题通关`;
+  const passVal = document.getElementById('passThresholdVal');
+  if(passVal) passVal.textContent = `${cfg.passScore}/${cfg.quizCount} 解锁现场模拟`;
+
+  // 找到自测引导段落，更新文案（类名是 quiz-intro，不是 lede——曾误写成 .lede 导致整块死代码）
+  const quizDesc = document.querySelector('#quiz .quiz-intro');
   if(quizDesc){
     if(mode === 'v1'){
       quizDesc.innerHTML = '前 4 题对应情境 A，后 4 题对应情境 B。每题只有一个<strong>最佳</strong>答案。得分 ≥ 6/8 解锁现场模拟资格。';
