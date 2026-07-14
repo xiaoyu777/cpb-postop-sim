@@ -1,0 +1,2522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>课前自学 · 体外循环术后情境模拟 · ICU 专培</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nejm-navy:#2a3967;
+  --nejm-navy-light:#3d5490;
+  --nejm-purple:#5b3f99;
+  --nejm-red:#c41230;
+  --nejm-red-dark:#9a0a23;
+  --nejm-gold:#b8860b;
+  --nejm-teal:#006666;
+  --ink:#1a1a1a;
+  --ink-soft:#333;
+  --ink-light:#555;
+  --ink-lighter:#888;
+  --rule:#d4d4d4;
+  --rule-soft:#ededed;
+  --bg:#fafaf8;
+  --bg-paper:#fffdfa;
+  --bg-highlight:#fff8e7;
+  --callout-blue:#eef1f8;
+  --callout-red:#fbeef1;
+  --callout-green:#edf4ef;
+  --callout-purple:#f2edf7;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Source Serif 4',Georgia,'Songti SC','Noto Serif SC',serif;
+  font-size:17px;line-height:1.7;color:var(--ink);
+  background:var(--bg);-webkit-font-smoothing:antialiased;
+}
+
+/* ==================== 顶部栏 ==================== */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:#fff;border-bottom:1.5px solid var(--nejm-navy);
+  backdrop-filter:blur(10px);
+}
+.topbar-inner{
+  max-width:1180px;margin:0 auto;padding:12px 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{
+  width:36px;height:36px;background:var(--nejm-navy);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-family:'Source Serif 4',serif;font-weight:700;
+  font-style:italic;font-size:20px;letter-spacing:-1px;
+}
+.brand-text{font-family:'Source Sans 3',sans-serif;font-size:13px;line-height:1.3}
+.brand-text .title{font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.brand-text .sub{color:var(--ink-lighter);font-size:11px;text-transform:uppercase;letter-spacing:0.08em}
+
+.nav-wrap{display:flex;flex-direction:column;gap:3px}
+.nav-row{display:flex;gap:2px;font-family:'Source Sans 3',sans-serif;font-size:12.5px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+.nav-row .row-lbl{
+  font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.14em;padding:4px 10px 4px 0;
+  min-width:80px;text-align:right;color:var(--ink-lighter);
+}
+.nav-row.a .row-lbl{color:var(--nejm-red)}
+.nav-row.b .row-lbl{color:var(--nejm-navy)}
+.nav-row.t .row-lbl{color:var(--nejm-teal)}
+.nav-row a{
+  color:var(--ink-light);text-decoration:none;padding:6px 10px;
+  border-radius:2px;transition:all .2s;font-weight:500;
+  display:flex;align-items:center;gap:5px;white-space:nowrap;
+}
+.nav-row a:hover{color:var(--nejm-navy);background:var(--callout-blue)}
+.nav-row a.active{color:var(--nejm-navy);font-weight:600;background:var(--callout-blue)}
+.nav-row.a a.active{color:var(--nejm-red);background:var(--callout-red)}
+.nav-row.t a.active{color:var(--nejm-teal);background:var(--callout-green)}
+.nav-row .num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--nejm-red);font-weight:600}
+.nav-row.b .num{color:var(--nejm-navy)}
+.nav-row.t .num{color:var(--nejm-teal)}
+
+.progress-wrap{height:3px;background:var(--rule-soft);position:relative}
+.progress{height:100%;background:var(--nejm-navy);width:0%;transition:width .4s}
+
+/* ==================== 头部 ==================== */
+.header{background:var(--bg-paper);border-bottom:1px solid var(--rule);padding:54px 32px 44px}
+.header-inner{max-width:900px;margin:0 auto}
+.issue{
+  font-family:'Source Sans 3',sans-serif;font-size:11px;
+  text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--nejm-red);font-weight:600;margin-bottom:14px;
+  display:flex;align-items:center;gap:12px;
+}
+.issue::before,.issue::after{content:"";flex:0 0 30px;height:1px;background:var(--nejm-red)}
+.issue::after{flex:1}
+h1{
+  font-family:'Source Serif 4',serif;
+  font-size:40px;font-weight:700;line-height:1.15;
+  color:var(--ink);letter-spacing:-0.01em;margin-bottom:18px;
+}
+.subtitle{
+  font-family:'Source Serif 4',serif;
+  font-size:19px;font-style:italic;color:var(--ink-light);
+  line-height:1.5;margin-bottom:28px;font-weight:400;
+}
+.byline{
+  font-family:'Source Sans 3',sans-serif;font-size:13px;
+  color:var(--ink-light);padding-top:18px;border-top:1px solid var(--rule);
+  display:flex;gap:32px;flex-wrap:wrap;
+}
+.byline .label{color:var(--ink-lighter);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px}
+.byline .val{font-weight:500;color:var(--ink)}
+
+/* ==================== 病例时间线 ==================== */
+.timeline{
+  background:var(--bg-paper);border:1px solid var(--rule);
+  margin:32px 0;padding:28px 32px;position:relative;
+}
+.timeline-label{
+  font-family:'Source Sans 3',sans-serif;font-size:10px;
+  text-transform:uppercase;letter-spacing:0.14em;font-weight:700;
+  color:var(--nejm-navy);margin-bottom:16px;
+}
+.timeline-track{
+  position:relative;padding:0 20px;margin-top:14px;
+}
+.timeline-track::before{
+  content:"";position:absolute;top:50%;left:0;right:0;
+  height:2px;background:var(--rule);z-index:0;
+}
+.timeline-nodes{
+  display:flex;justify-content:space-between;position:relative;z-index:1;
+}
+.tl-node{
+  flex:0 0 auto;text-align:center;font-family:'Source Sans 3',sans-serif;
+}
+.tl-dot{
+  width:14px;height:14px;border-radius:50%;margin:0 auto 8px;
+  background:#fff;border:2.5px solid var(--rule);
+}
+.tl-dot.a{border-color:var(--nejm-red)}
+.tl-dot.b{border-color:var(--nejm-navy)}
+.tl-dot.end{border-color:var(--nejm-teal);background:var(--nejm-teal)}
+.tl-time{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-lighter);margin-bottom:2px}
+.tl-label{font-size:11px;font-weight:600;color:var(--ink-soft)}
+.tl-label b{display:block;font-size:12px;color:var(--nejm-navy)}
+
+/* ==================== 主体 ==================== */
+main{max-width:900px;margin:0 auto;padding:48px 32px 120px}
+
+/* 情境标识横幅 */
+.scenario-banner{
+  margin:40px 0 24px;padding:20px 28px;
+  background:linear-gradient(to right,var(--bg-paper) 0%,#fff 100%);
+  border-left:6px solid;position:relative;
+}
+.scenario-banner.a{border-color:var(--nejm-red)}
+.scenario-banner.b{border-color:var(--nejm-navy)}
+.scenario-banner .sc-tag{
+  font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.16em;margin-bottom:6px;
+}
+.scenario-banner.a .sc-tag{color:var(--nejm-red)}
+.scenario-banner.b .sc-tag{color:var(--nejm-navy)}
+.scenario-banner .sc-title{
+  font-family:'Source Serif 4',serif;font-size:26px;font-weight:700;
+  line-height:1.25;color:var(--ink);margin-bottom:4px;
+}
+.scenario-banner .sc-sub{
+  font-family:'Source Serif 4',serif;font-style:italic;
+  font-size:15px;color:var(--ink-light);
+}
+.scenario-banner .sc-meta{
+  position:absolute;top:20px;right:24px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--ink-lighter);
+}
+
+.section{margin-bottom:56px;scroll-margin-top:120px;padding-top:16px}
+.section-tag{
+  font-family:'Source Sans 3',sans-serif;font-size:10px;
+  text-transform:uppercase;letter-spacing:0.14em;
+  font-weight:700;display:inline-flex;align-items:center;gap:10px;
+  padding:5px 12px;margin-bottom:14px;
+}
+.section-tag.a{color:var(--nejm-red);background:var(--callout-red);border-left:3px solid var(--nejm-red)}
+.section-tag.b{color:var(--nejm-navy);background:var(--callout-blue);border-left:3px solid var(--nejm-navy)}
+.section-tag .time{font-family:'JetBrains Mono',monospace}
+
+h2{
+  font-family:'Source Serif 4',serif;
+  font-size:28px;font-weight:700;line-height:1.25;
+  color:var(--ink);letter-spacing:-0.01em;margin-bottom:10px;
+}
+.lede{
+  font-family:'Source Serif 4',serif;font-size:17px;color:var(--ink-light);
+  margin-bottom:28px;line-height:1.65;font-style:italic;
+  padding-left:16px;border-left:2px solid var(--rule);
+}
+.section p{margin-bottom:16px}
+.section p strong{font-weight:600;color:var(--ink)}
+
+/* 学习目标块 */
+.objectives{
+  background:var(--bg-paper);border:1px solid var(--rule);
+  padding:22px 26px;margin-bottom:30px;position:relative;
+}
+.objectives.a{border-top:3px solid var(--nejm-red)}
+.objectives.b{border-top:3px solid var(--nejm-navy)}
+.objectives .obj-label{
+  font-family:'Source Sans 3',sans-serif;font-size:10px;
+  text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin-bottom:10px;
+}
+.objectives.a .obj-label{color:var(--nejm-red)}
+.objectives.b .obj-label{color:var(--nejm-navy)}
+.objectives ol{list-style:none;counter-reset:obj;padding:0}
+.objectives li{
+  counter-increment:obj;position:relative;padding-left:30px;
+  margin-bottom:8px;font-size:15px;line-height:1.6;color:var(--ink-soft);
+}
+.objectives li::before{
+  content:counter(obj);position:absolute;left:0;top:1px;
+  width:20px;height:20px;color:#fff;
+  font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;border-radius:50%;
+}
+.objectives.a li::before{background:var(--nejm-red)}
+.objectives.b li::before{background:var(--nejm-navy)}
+
+/* 情境 A: 病例快照数据表 */
+.snapshot{
+  background:#fff;border:1px solid var(--rule);
+  margin:28px 0;overflow:hidden;
+}
+.snapshot-head{
+  background:var(--ink);color:#fff;padding:12px 20px;
+  font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;
+  display:flex;justify-content:space-between;align-items:center;
+  letter-spacing:0.04em;
+}
+.snapshot-head .time{font-family:'JetBrains Mono',monospace;font-size:11px;color:#fff8e7}
+.snapshot-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:0;
+}
+.snap-item{padding:14px 20px;border-right:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft)}
+.snap-item:nth-child(2n){border-right:none}
+.snap-item:nth-last-child(-n+2){border-bottom:none}
+.snap-label{
+  font-family:'Source Sans 3',sans-serif;font-size:10px;
+  text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-lighter);
+  margin-bottom:4px;
+}
+.snap-val{
+  font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;color:var(--ink);
+}
+.snap-val.alert{color:var(--nejm-red);font-weight:700}
+.snap-val.alert::after{content:" ▲";font-size:10px}
+.snap-val.low::after{content:" ▼";font-size:10px;color:var(--nejm-red)}
+.snap-note{font-family:'Source Sans 3',sans-serif;font-size:11px;color:var(--ink-lighter);margin-top:2px}
+
+/* LCOS 判断算法 */
+.algo-box{
+  background:var(--bg-paper);border:1px solid var(--rule);
+  padding:28px;margin:28px 0;
+}
+.algo-box svg{width:100%;height:auto;display:block}
+
+/* 心脏 + IABP 动画 */
+.heart-iabp{
+  background:var(--bg-paper);border:1px solid var(--rule);
+  padding:28px;margin:28px 0;
+}
+.heart-iabp-wrap{background:#f5f3ef;padding:20px;border:1px solid var(--rule-soft);margin-bottom:14px}
+.heart-iabp-wrap svg{width:100%;height:auto;display:block}
+.phase-ctrl{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.phase-btn{
+  font-family:'Source Sans 3',sans-serif;font-size:12.5px;
+  padding:8px 14px;border:1px solid var(--rule);background:#fff;
+  cursor:pointer;transition:all .2s;color:var(--ink-soft);font-weight:500;
+}
+.phase-btn.active{border-color:var(--nejm-red);background:var(--nejm-red);color:#fff}
+.phase-btn:not(.active):hover{border-color:var(--nejm-red);color:var(--nejm-red)}
+.phase-desc{
+  font-family:'Source Sans 3',sans-serif;font-size:13px;
+  padding:12px 16px;background:#fff;border:1px dashed var(--rule);
+  line-height:1.6;color:var(--ink-soft);
+}
+.phase-desc b{color:var(--nejm-red)}
+
+/* TEG 交互（与原版相同） */
+.teg-interactive{background:var(--bg-paper);border:1px solid var(--rule);padding:28px;margin:28px 0}
+.teg-graph-wrap{background:#f5f3ef;padding:16px;border:1px solid var(--rule-soft);margin-bottom:20px}
+.teg-graph-wrap svg{width:100%;height:auto;display:block}
+.teg-sliders{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:20px}
+.slider-group{background:#fff;padding:12px 14px;border:1px solid var(--rule)}
+.slider-group .lab{
+  font-family:'Source Sans 3',sans-serif;font-size:11px;
+  display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;
+}
+.slider-group .lab b{color:var(--nejm-navy);font-weight:700;font-size:13px}
+.slider-group .lab span{font-family:'JetBrains Mono',monospace;color:var(--nejm-red);font-weight:600;font-size:14px}
+.slider-group input[type=range]{width:100%;accent-color:var(--nejm-navy)}
+.slider-group .range-scale{
+  font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink-lighter);
+  display:flex;justify-content:space-between;margin-top:2px;
+}
+.teg-verdict{
+  padding:14px 18px;background:var(--callout-blue);border-left:3px solid var(--nejm-navy);
+  font-family:'Source Sans 3',sans-serif;font-size:14px;line-height:1.6;color:var(--ink-soft);
+}
+.teg-verdict .v-title{font-weight:700;color:var(--nejm-navy);margin-bottom:6px;font-size:13px;text-transform:uppercase;letter-spacing:0.08em}
+.teg-verdict .rx{color:var(--nejm-red);font-weight:600}
+
+/* 亚甲蓝通路 */
+.pathway-box{background:var(--bg-paper);border:1px solid var(--rule);padding:28px;margin:28px 0}
+.pathway-svg{background:#f5f3ef;padding:18px;border:1px solid var(--rule-soft)}
+.pathway-svg svg{width:100%;height:auto;display:block}
+.mb-compare{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+.mb-card{background:#fff;border:1px solid var(--rule);padding:16px 18px}
+.mb-card .badge{
+  display:inline-block;font-family:'Source Sans 3',sans-serif;
+  font-size:10px;text-transform:uppercase;letter-spacing:0.1em;
+  padding:3px 8px;font-weight:700;margin-bottom:8px;
+}
+.mb-card.dose .badge{background:var(--callout-green);color:var(--nejm-teal)}
+.mb-card.caution .badge{background:var(--callout-red);color:var(--nejm-red)}
+.mb-card h5{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:700;margin-bottom:10px;color:var(--ink)}
+.mb-card ul{list-style:none;padding:0;font-size:13px;line-height:1.75;color:var(--ink-soft)}
+.mb-card li{padding-left:16px;position:relative;margin-bottom:4px}
+.mb-card li::before{content:"▸";position:absolute;left:0;color:var(--nejm-navy)}
+
+/* B 情境：多米诺骨牌链 */
+.domino-box{
+  background:var(--bg-paper);border:1px solid var(--rule);
+  padding:28px;margin:28px 0;
+}
+.domino-box svg{width:100%;height:auto;display:block}
+
+/* B 情境：心脏 D 字征（与原版相同结构） */
+.heart-interactive{
+  background:var(--bg-paper);border:1px solid var(--rule);
+  padding:28px;margin:28px 0;
+  display:grid;grid-template-columns:1fr 260px;gap:24px;align-items:start;
+}
+.heart-svg-wrap{background:#f5f3ef;padding:16px;border:1px solid var(--rule-soft)}
+.heart-svg-wrap svg{width:100%;height:auto;display:block}
+.heart-controls h4{
+  font-family:'Source Sans 3',sans-serif;font-size:11px;
+  text-transform:uppercase;letter-spacing:0.12em;color:var(--nejm-navy);font-weight:700;margin-bottom:14px;
+}
+.scenario-btns{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.scenario-btn{
+  font-family:'Source Sans 3',sans-serif;font-size:13px;
+  padding:10px 14px;border:1px solid var(--rule);background:#fff;
+  cursor:pointer;text-align:left;transition:all .2s;color:var(--ink-soft);font-weight:500;
+}
+.scenario-btn:hover{border-color:var(--nejm-navy);color:var(--nejm-navy)}
+.scenario-btn.active{border-color:var(--nejm-navy);background:var(--nejm-navy);color:#fff}
+.scenario-data{
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  background:#fafafa;padding:12px 14px;border:1px dashed var(--rule);
+  line-height:1.7;color:var(--ink-soft);
+}
+.scenario-data .key{color:var(--nejm-navy);font-weight:600}
+.scenario-data .warn{color:var(--nejm-red);font-weight:600}
+
+/* 胶体-利尿悖论 */
+.paradox-viz{background:var(--bg-paper);border:1px solid var(--rule);padding:24px;margin:28px 0}
+.paradox-viz svg{width:100%;height:auto;display:block;margin-bottom:14px}
+
+/* 引用 */
+blockquote.quote{
+  font-family:'Source Serif 4',serif;font-style:italic;
+  font-size:17px;line-height:1.55;color:var(--ink-light);
+  padding:16px 22px;border-left:3px solid var(--nejm-gold);
+  margin:22px 0;background:var(--bg-highlight);
+}
+blockquote.quote cite{
+  display:block;font-style:normal;font-family:'Source Sans 3',sans-serif;
+  font-size:12px;color:var(--ink-lighter);margin-top:10px;
+}
+
+/* callout */
+.callout{
+  border:1px solid var(--rule);padding:18px 22px;margin:22px 0;
+  background:var(--bg-paper);position:relative;padding-left:28px;
+}
+.callout::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+.callout.key::before{background:var(--nejm-navy)}
+.callout.warn::before{background:var(--nejm-red)}
+.callout.pearl::before{background:var(--nejm-gold)}
+.callout.note::before{background:var(--nejm-teal)}
+.callout .tag{
+  font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;
+}
+.callout.key .tag{color:var(--nejm-navy)}
+.callout.warn .tag{color:var(--nejm-red)}
+.callout.pearl .tag{color:var(--nejm-gold)}
+.callout.note .tag{color:var(--nejm-teal)}
+.callout p{margin-bottom:8px;font-size:15px;line-height:1.65}
+.callout p:last-child{margin-bottom:0}
+
+/* 过渡卡片：A→B */
+.bridge{
+  margin:50px 0;padding:24px 28px;
+  background:linear-gradient(90deg,var(--callout-red) 0%,var(--callout-blue) 100%);
+  border:1px solid var(--rule);
+  text-align:center;
+}
+.bridge-title{
+  font-family:'Source Sans 3',sans-serif;font-size:11px;
+  text-transform:uppercase;letter-spacing:0.16em;font-weight:700;
+  color:var(--ink-soft);margin-bottom:10px;
+}
+.bridge-body{
+  font-family:'Source Serif 4',serif;font-size:18px;font-style:italic;
+  line-height:1.5;color:var(--ink);
+}
+.bridge-arrow{font-size:24px;margin:12px 0;color:var(--ink-lighter)}
+
+/* 自测 */
+.quiz-section{
+  background:linear-gradient(180deg,var(--bg-paper) 0%,#f5f3ef 100%);
+  border:2px solid var(--nejm-navy);padding:40px 36px;
+  margin-top:80px;position:relative;
+}
+.quiz-section::before{
+  content:"FINAL ASSESSMENT";
+  position:absolute;top:-12px;left:36px;
+  background:var(--nejm-navy);color:#fff;padding:4px 12px;
+  font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;
+}
+.quiz-intro{font-family:'Source Serif 4',serif;font-style:italic;color:var(--ink-light);margin-bottom:24px}
+.question{background:#fff;border:1px solid var(--rule);padding:22px 26px;margin-bottom:14px}
+.question.a-q{border-left:4px solid var(--nejm-red)}
+.question.b-q{border-left:4px solid var(--nejm-navy)}
+.q-num{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:10px;
+}
+.q-num .q-badge{
+  font-family:'Source Sans 3',sans-serif;font-size:10px;
+  padding:2px 7px;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;
+}
+.q-num.a-num{color:var(--nejm-red)}
+.q-num.a-num .q-badge{background:var(--nejm-red);color:#fff}
+.q-num.b-num{color:var(--nejm-navy)}
+.q-num.b-num .q-badge{background:var(--nejm-navy);color:#fff}
+.q-stem{font-family:'Source Serif 4',serif;font-size:15.5px;line-height:1.6;margin-bottom:14px;color:var(--ink)}
+.q-stem .data{
+  display:inline-block;font-family:'JetBrains Mono',monospace;font-size:13px;
+  background:#f5f3ef;padding:2px 6px;margin:0 2px;
+}
+.q-options{display:flex;flex-direction:column;gap:6px}
+.q-opt{
+  font-family:'Source Sans 3',sans-serif;font-size:14px;
+  padding:10px 14px;border:1px solid var(--rule);background:#fff;
+  cursor:pointer;transition:all .15s;text-align:left;line-height:1.5;color:var(--ink-soft);
+  display:flex;gap:10px;align-items:flex-start;
+}
+.q-opt .letter{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--nejm-navy);flex-shrink:0}
+.q-opt:hover{border-color:var(--nejm-navy);background:var(--callout-blue)}
+.q-opt.sel{border-color:var(--nejm-navy);background:var(--callout-blue)}
+.q-opt.correct{border-color:var(--nejm-teal);background:var(--callout-green)}
+.q-opt.wrong{border-color:var(--nejm-red);background:var(--callout-red)}
+.q-feedback{
+  margin-top:12px;padding:12px 16px;font-size:13px;line-height:1.6;
+  font-family:'Source Sans 3',sans-serif;display:none;border-left:3px solid var(--nejm-navy);
+  background:var(--callout-blue);color:var(--ink-soft);
+}
+.q-feedback.show{display:block}
+.q-feedback .correct-label{color:var(--nejm-teal);font-weight:700}
+.q-feedback .wrong-label{color:var(--nejm-red);font-weight:700}
+
+.quiz-submit-wrap{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:24px;padding-top:20px;border-top:1px solid var(--rule);flex-wrap:wrap;gap:16px;
+}
+.quiz-progress{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-light)}
+.quiz-progress b{color:var(--nejm-navy);font-size:16px}
+.submit-btn{
+  font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;
+  padding:12px 28px;background:var(--nejm-navy);color:#fff;border:none;
+  cursor:pointer;letter-spacing:0.04em;transition:all .2s;
+}
+.submit-btn:hover{background:var(--nejm-navy-light)}
+.submit-btn:disabled{background:var(--ink-lighter);cursor:not-allowed}
+
+.result{margin-top:24px;padding:28px;background:#fff;border:2px solid var(--rule);display:none}
+.result.show{display:block}
+.result.pass{border-color:var(--nejm-teal)}
+.result.fail{border-color:var(--nejm-red)}
+.result-score{font-family:'JetBrains Mono',monospace;font-size:42px;font-weight:700;line-height:1;margin-bottom:8px}
+.result.pass .result-score{color:var(--nejm-teal)}
+.result.fail .result-score{color:var(--nejm-red)}
+.result-msg{font-family:'Source Serif 4',serif;font-size:17px;color:var(--ink-soft);line-height:1.5;margin-bottom:12px}
+.result-cta{font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--ink-light)}
+
+/* 参考文献 */
+.refs{margin-top:80px;padding-top:32px;border-top:2px solid var(--ink)}
+.refs h3{
+  font-family:'Source Sans 3',sans-serif;font-size:11px;
+  text-transform:uppercase;letter-spacing:0.14em;color:var(--ink);font-weight:700;margin-bottom:18px;
+}
+.refs ol{list-style:none;counter-reset:ref;padding:0}
+.refs li{
+  counter-increment:ref;position:relative;padding-left:32px;
+  font-size:13px;line-height:1.55;color:var(--ink-soft);margin-bottom:10px;
+  font-family:'Source Sans 3',sans-serif;
+}
+.refs li::before{content:counter(ref)".";position:absolute;left:0;top:0;font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--nejm-navy)}
+.refs li a{color:var(--nejm-navy);text-decoration:none;border-bottom:1px solid var(--rule)}
+.refs li a:hover{border-color:var(--nejm-navy)}
+.refs li em{font-style:italic}
+
+.foot{
+  background:var(--ink);color:#aaa;padding:28px 32px;margin-top:60px;
+  font-family:'Source Sans 3',sans-serif;font-size:12px;text-align:center;
+}
+.foot b{color:#fff}
+
+@media (max-width:780px){
+  .topbar-inner{flex-direction:column;gap:10px}
+  .nav-wrap{width:100%}
+  .nav-row{justify-content:flex-start;flex-wrap:wrap}
+  .nav-row .row-lbl{min-width:auto;text-align:left;padding-right:8px}
+  h1{font-size:30px}
+  .subtitle{font-size:17px}
+  .heart-interactive{grid-template-columns:1fr}
+  .teg-sliders{grid-template-columns:1fr}
+  .mb-compare{grid-template-columns:1fr}
+  .snapshot-grid{grid-template-columns:1fr}
+  .snap-item{border-right:none !important}
+  main{padding:36px 20px 80px}
+  .header{padding:36px 20px 28px}
+  .scenario-banner .sc-meta{position:static;margin-top:8px}
+  .timeline-track{padding:0 4px}
+}
+
+@media print{.topbar,.nav-wrap,.submit-btn,.quiz-submit-wrap,.pretest-topbar{display:none}.section{page-break-inside:avoid}}
+/* ========= 前测模块 · 深色主题 ========= */
+#pretest-gate{
+  position:fixed;inset:0;z-index:9999;
+  background:linear-gradient(180deg, #1e2a4f 0%, #0f1730 100%);
+  overflow-y:auto;
+  display:flex;flex-direction:column;
+  color:#e8eaed;
+  font-family:'Source Sans 3',sans-serif;
+}
+#pretest-gate::before{
+  /* 微妙的网格纹理增加深度感 */
+  content:"";position:fixed;inset:0;pointer-events:none;
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0, transparent 79px, rgba(255,255,255,0.02) 79px, rgba(255,255,255,0.02) 80px);
+}
+
+.pretest-topbar{
+  background:rgba(0,0,0,0.25);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  color:#fff;
+  padding:14px 32px;display:flex;align-items:center;justify-content:space-between;
+  font-size:13px;flex-shrink:0;position:relative;z-index:100;
+}
+.pretest-topbar .pt-brand{font-weight:700;letter-spacing:0.04em;display:flex;align-items:center;gap:10px}
+.pretest-topbar .pt-brand::before{
+  content:"";display:inline-block;width:24px;height:2px;background:#c41230;
+}
+.pretest-topbar .pt-badge{
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+  padding:4px 12px;background:rgba(196,18,48,0.25);
+  border:1px solid rgba(196,18,48,0.4);
+  color:#ff8fa3;border-radius:2px;letter-spacing:0.06em;
+}
+
+.pretest-body{
+  max-width:760px;margin:0 auto;padding:40px 32px 80px;
+  flex:1;position:relative;z-index:1;
+}
+
+.pretest-intro{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-left:4px solid #c41230;
+  padding:24px 28px;margin-bottom:32px;
+  backdrop-filter:blur(10px);
+}
+.pretest-intro h2{
+  font-family:'Source Serif 4',serif;font-size:24px;font-weight:700;
+  color:#fff;margin-bottom:10px;letter-spacing:-0.01em;
+}
+.pretest-intro p{
+  font-family:'Source Serif 4',serif;font-size:14.5px;
+  color:rgba(255,255,255,0.75);
+  line-height:1.7;margin-bottom:8px;
+}
+.pretest-intro p strong{color:#fff;font-weight:600}
+.pretest-intro .pt-rules{
+  display:flex;gap:24px;margin-top:18px;font-size:12px;
+  flex-wrap:wrap;
+}
+.pretest-intro .pt-rule{
+  display:flex;align-items:center;gap:6px;
+  color:rgba(255,255,255,0.6);
+}
+.pretest-intro .pt-rule b{color:#fff;font-weight:700;font-size:14px}
+
+.pretest-q-wrap{margin-bottom:24px}
+.pretest-q{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  padding:22px 24px;
+  margin-bottom:14px;
+  transition:border-color .2s;
+}
+.pretest-q:hover{border-color:rgba(255,255,255,0.2)}
+.pretest-q .pq-num{
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
+  color:#ff8fa3;letter-spacing:0.1em;margin-bottom:10px;
+  text-transform:uppercase;
+}
+.pretest-q .pq-text{
+  font-family:'Source Serif 4',serif;font-size:15px;line-height:1.65;
+  color:#fff;margin-bottom:16px;
+}
+.pretest-q .pq-text .data{
+  background:rgba(196,18,48,0.2);
+  color:#ffb3c0;
+  padding:1px 6px;border-radius:2px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;
+}
+.pretest-q .pq-opts{display:flex;flex-direction:column;gap:7px}
+.pretest-q .pq-opt{
+  display:flex;align-items:flex-start;gap:12px;padding:11px 14px;
+  border:1.5px solid rgba(255,255,255,0.15);
+  background:rgba(0,0,0,0.2);
+  cursor:pointer;
+  font-family:'Source Sans 3',sans-serif;font-size:13px;line-height:1.5;
+  color:rgba(255,255,255,0.85);
+  transition:all .15s;border-radius:3px;
+  text-align:left;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.pretest-q .pq-opt:hover{
+  border-color:rgba(255,255,255,0.4);
+  background:rgba(255,255,255,0.05);
+  color:#fff;
+}
+.pretest-q .pq-opt.selected{
+  border-color:#c41230;
+  background:rgba(196,18,48,0.2);
+  color:#fff;
+}
+.pretest-q .pq-key{
+  font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;
+  flex-shrink:0;width:20px;color:rgba(255,255,255,0.5);
+}
+.pretest-q .pq-opt.selected .pq-key{color:#ff8fa3}
+
+.pretest-submit-wrap{
+  text-align:center;padding:18px 0 24px;
+  position:sticky;bottom:0;
+  background:linear-gradient(180deg, transparent 0%, rgba(15,23,48,0.9) 30%, rgba(15,23,48,1) 100%);
+  margin:0 -32px;padding-left:32px;padding-right:32px;
+  z-index:2;
+}
+.pretest-submit-btn{
+  font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700;
+  padding:14px 44px;
+  background:#c41230;color:#fff;
+  border:none;cursor:pointer;border-radius:3px;
+  letter-spacing:0.04em;
+  transition:all .15s;
+  box-shadow:0 4px 16px rgba(196,18,48,0.3);
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.pretest-submit-btn:disabled{
+  opacity:0.3;cursor:not-allowed;
+  background:rgba(255,255,255,0.1);
+  box-shadow:none;
+}
+.pretest-submit-btn:not(:disabled):hover{
+  background:#a50f28;transform:translateY(-1px);
+  box-shadow:0 6px 20px rgba(196,18,48,0.4);
+}
+.pretest-answered{
+  font-family:'Source Sans 3',sans-serif;font-size:12.5px;
+  color:rgba(255,255,255,0.6);margin-bottom:12px;
+}
+.pretest-answered b{color:#fff;font-weight:700;font-size:14px}
+
+/* ========= 模态结果框 ========= */
+.pretest-modal-overlay{
+  position:fixed;inset:0;z-index:10000;
+  background:rgba(0,0,0,0.75);
+  backdrop-filter:blur(6px);
+  display:none;
+  align-items:center;justify-content:center;
+  padding:20px;
+  animation:fadeIn .25s ease-out;
+}
+.pretest-modal-overlay.show{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
+
+.pretest-modal{
+  background:#fffdfa;
+  max-width:480px;width:100%;
+  padding:36px 40px 32px;
+  border-radius:4px;
+  box-shadow:0 24px 80px rgba(0,0,0,0.4);
+  text-align:center;
+  animation:scaleIn .3s cubic-bezier(0.16, 1, 0.3, 1);
+  position:relative;
+  border-top:5px solid #2a3967;
+}
+.pretest-modal .pm-icon{
+  width:60px;height:60px;
+  margin:0 auto 16px;
+  border-radius:50%;
+  background:linear-gradient(135deg, #2a3967 0%, #5b3f99 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;color:#fff;
+  box-shadow:0 4px 12px rgba(42,57,103,0.3);
+}
+.pretest-modal .pm-label{
+  font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;
+  color:#888;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:6px;
+}
+.pretest-modal .pm-score{
+  font-family:'JetBrains Mono',monospace;font-size:64px;font-weight:700;
+  color:#2a3967;line-height:1;margin-bottom:10px;
+  letter-spacing:-0.02em;
+}
+.pretest-modal .pm-score-bar{
+  width:100%;height:6px;background:#e3e3e3;border-radius:3px;
+  overflow:hidden;margin-bottom:24px;
+}
+.pretest-modal .pm-score-bar-fill{
+  height:100%;background:linear-gradient(90deg, #c41230 0%, #b8860b 50%, #006666 100%);
+  border-radius:3px;transition:width .8s cubic-bezier(0.16, 1, 0.3, 1);width:0;
+}
+.pretest-modal .pm-msg{
+  font-family:'Source Serif 4',serif;font-size:15px;font-style:italic;
+  color:#555;line-height:1.65;margin-bottom:28px;
+}
+.pretest-modal .pm-actions{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+}
+.pretest-modal .pm-btn{
+  font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:700;
+  padding:12px 30px;
+  border:none;cursor:pointer;border-radius:3px;
+  letter-spacing:0.02em;transition:all .15s;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.pretest-modal .pm-btn-primary{
+  background:#006666;color:#fff;
+  box-shadow:0 3px 10px rgba(0,102,102,0.25);
+}
+.pretest-modal .pm-btn-primary:hover{
+  background:#005555;transform:translateY(-1px);
+  box-shadow:0 5px 14px rgba(0,102,102,0.35);
+}
+.pretest-modal .pm-tier-tag{
+  display:inline-block;
+  font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.1em;
+  padding:3px 10px;border-radius:2px;margin-bottom:14px;
+}
+.pretest-modal .pm-tier-tag.t1{background:#fbeef1;color:#c41230}
+.pretest-modal .pm-tier-tag.t2{background:#fff8e7;color:#b8860b}
+.pretest-modal .pm-tier-tag.t3{background:#edf4ef;color:#006666}
+.pretest-modal .pm-tier-tag.t4{background:#eef1f8;color:#2a3967}
+
+@media(max-width:600px){
+  .pretest-body{padding:28px 20px 60px}
+  .pretest-modal{padding:28px 24px 24px}
+  .pretest-modal .pm-score{font-size:52px}
+  .pretest-q{padding:18px 18px}
+}
+
+/* 后测完成页：前后对比 */
+/* 后测完成页：前后对比 */
+.prepost-compare{
+  background:var(--nejm-paper);border:1px solid var(--nejm-rule);
+  padding:18px 22px;margin-top:18px;display:none;
+}
+.prepost-compare.show{display:block}
+.prepost-compare h4{
+  font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;
+  color:var(--nejm-navy);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;
+}
+.prepost-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;
+}
+.prepost-cell{
+  padding:14px 16px;background:#fff;border:1px solid var(--nejm-rule);
+  text-align:center;font-family:'Source Sans 3',sans-serif;
+}
+.prepost-cell .pc-val{
+  font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;
+  color:var(--nejm-navy);line-height:1;margin-bottom:4px;
+}
+.prepost-cell.gain .pc-val{color:var(--nejm-teal)}
+.prepost-cell .pc-key{font-size:10px;color:var(--nejm-ink4);text-transform:uppercase;letter-spacing:0.08em;font-weight:600}
+
+
+/* ========= 模式切换器(嵌入前测顶栏) ========= */
+.mode-switcher{
+  position:relative;
+  font-family:'Source Sans 3',sans-serif;
+  z-index:200;
+}
+.ms-toggle{
+  background:rgba(255,255,255,0.08);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.18);
+  cursor:pointer;
+  padding:7px 14px 7px 12px;border-radius:3px;
+  display:flex;align-items:center;gap:9px;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:13px;font-weight:600;letter-spacing:0.01em;
+  transition:all .18s;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.ms-toggle:hover{
+  background:rgba(255,255,255,0.15);
+  border-color:rgba(255,255,255,0.35);
+}
+.ms-toggle .ms-toggle-label{
+  font-size:10px;font-weight:600;
+  color:rgba(255,255,255,0.5);
+  text-transform:uppercase;letter-spacing:0.1em;
+  border-right:1px solid rgba(255,255,255,0.2);
+  padding-right:10px;
+}
+.ms-toggle #msCurrentMode{
+  font-weight:700;
+  color:#fff;
+}
+.ms-toggle .ms-icon{
+  font-size:13px;
+  color:#ff8fa3;
+  margin-left:2px;
+  font-weight:700;
+}
+.ms-menu{
+  position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:#fff;
+  border:1px solid #d0d0d0;border-radius:4px;
+  box-shadow:0 12px 36px rgba(0,0,0,0.25),0 0 0 1px rgba(0,0,0,0.05);
+  padding:8px;min-width:260px;
+  display:none;
+  z-index:1000;
+}
+.ms-menu.show{display:block;animation:msFadeIn .2s ease-out}
+@keyframes msFadeIn{from{opacity:0;transform:translateX(-50%) translateY(-4px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.ms-menu::before{
+  /* 上方小箭头 */
+  content:"";position:absolute;
+  top:-6px;left:50%;transform:translateX(-50%) rotate(45deg);
+  width:10px;height:10px;background:#fff;
+  border-top:1px solid #d0d0d0;border-left:1px solid #d0d0d0;
+}
+.ms-menu-title{
+  font-size:10px;font-weight:700;color:#888;text-transform:uppercase;
+  letter-spacing:0.12em;padding:8px 12px 8px;
+  border-bottom:1px solid #e8e8e8;margin-bottom:6px;
+}
+.ms-item{
+  display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;
+  padding:11px 12px;border-radius:3px;text-decoration:none;color:#1a1a1a;
+  transition:background .15s;
+}
+.ms-item:hover{background:#eef1f8}
+.ms-item.current{background:#eef1f8}
+.ms-item.current .ms-num{background:#c41230;color:#fff}
+.ms-num{
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
+  background:#e3e3e3;color:#555;padding:3px 7px;border-radius:2px;
+  letter-spacing:0.04em;min-width:42px;text-align:center;
+}
+.ms-name{font-size:13px;font-weight:600;color:#1a1a1a}
+.ms-desc{font-size:11px;color:#888}
+
+/* 小屏适配:模式切换器在窄屏下换行 */
+@media(max-width:680px){
+  .pretest-topbar{flex-wrap:wrap;gap:10px}
+  .ms-toggle .ms-toggle-label{display:none}
+  .ms-menu{min-width:220px}
+}
+
+/* 打印时隐藏模式切换器 */
+@media print{
+  .mode-switcher{display:none!important}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ==================== 前测入口 ==================== -->
+<div id="pretest-gate">
+  <div class="pretest-topbar">
+    <span class="pt-brand">课前自学 · 知识前测</span>
+
+    <!-- 模式切换器（嵌入顶栏） -->
+    <div class="mode-switcher" id="modeSwitcher">
+      <button class="ms-toggle" onclick="toggleModeMenu()" title="切换学习模式">
+        <span class="ms-toggle-label">当前模式</span>
+        <span id="msCurrentMode">A+B 完整版</span>
+        <span class="ms-icon">⇄</span>
+      </button>
+      <div class="ms-menu" id="msMenu">
+        <div class="ms-menu-title">切换学习模式</div>
+        <a href="?mode=v1" class="ms-item" data-target="v1">
+          <span class="ms-num">V1</span>
+          <span class="ms-name">A+B 连续</span>
+          <span class="ms-desc">完整双幕 · 8 题</span>
+        </a>
+        <a href="?mode=v2a" class="ms-item" data-target="v2a">
+          <span class="ms-num">V2-A</span>
+          <span class="ms-name">仅情境 A</span>
+          <span class="ms-desc">破局休克 · 4 题</span>
+        </a>
+        <a href="?mode=v2b" class="ms-item" data-target="v2b">
+          <span class="ms-num">V2-B</span>
+          <span class="ms-name">情境 B + 回顾</span>
+          <span class="ms-desc">保护右心 · 4 题</span>
+        </a>
+      </div>
+    </div>
+
+    <span class="pt-badge">Pre-Test · 共 8 题</span>
+  </div>
+  <div class="pretest-body">
+    <div class="pretest-intro" id="ptIntro">
+      <h2>在开始自学之前——先测一测</h2>
+      <p id="ptIntroP1">
+        以下 8 道题覆盖本次课的核心知识点。<strong>请在不参考任何资料的情况下</strong>独立作答，系统会记录你的前测分数。
+      </p>
+      <p id="ptIntroP2">
+        完成后，你将正式进入课前自学模块。自学结束后用同样的 8 道题再测一次，系统会自动显示你的<strong>学习前后对比</strong>。
+      </p>
+      <div class="pt-rules">
+        <div class="pt-rule" id="ptRuleCount"><b>8</b> 道题</div>
+        <div class="pt-rule" id="ptRuleTime"><b>约 5 分钟</b></div>
+        <div class="pt-rule"><b>不计入通关</b>，只记录基线</div>
+        <div class="pt-rule"><b>不知道就猜</b>，如实作答</div>
+      </div>
+    </div>
+
+    <div class="pretest-q-wrap" id="ptQuestions"></div>
+
+    <div class="pretest-submit-wrap" id="ptSubmitWrap">
+      <div class="pretest-answered">已作答 <b id="ptAnswered">0</b> / 8 题</div>
+      <button class="pretest-submit-btn" id="ptSubmitBtn" disabled onclick="submitPretest()">提交前测答案 →</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== 模态结果框 ==================== -->
+<div class="pretest-modal-overlay" id="ptModalOverlay">
+  <div class="pretest-modal">
+    <div class="pm-icon">📊</div>
+    <div class="pm-tier-tag" id="pmTierTag">—</div>
+    <div class="pm-label">前测得分 · Pre-Test Score</div>
+    <div class="pm-score" id="pmScore">— / 8</div>
+    <div class="pm-score-bar"><div class="pm-score-bar-fill" id="pmScoreBar"></div></div>
+    <div class="pm-msg" id="pmMsg">—</div>
+    <div class="pm-actions">
+      <button class="pm-btn pm-btn-primary" onclick="startMainContent()">已了解 · 开始自学 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- 顶部 -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">C</div>
+      <div class="brand-text">
+        <div class="title">ICU Simulation Curriculum</div>
+        <div class="sub">Pre-class · Post-CPB Crisis Management · Scenarios A & B</div>
+      </div>
+    </div>
+    <nav class="nav-wrap">
+      <div class="nav-row a" data-mode="v1 v2a">
+        <span class="row-lbl">A · 破局休克</span>
+        <a href="#m1" class="active"><span class="num">A1</span>LCOS</a>
+        <a href="#m2"><span class="num">A2</span>IABP</a>
+        <a href="#m3"><span class="num">A3</span>TEG</a>
+        <a href="#m4"><span class="num">A4</span>血管麻痹</a>
+      </div>
+      <div class="nav-row b" data-mode="v1 v2b">
+        <span class="row-lbl">B · 保护右心</span>
+        <a href="#m5"><span class="num">B1</span>右心衰</a>
+        <a href="#m6"><span class="num">B2</span>iNO</a>
+        <a href="#m7"><span class="num">B3</span>渗漏</a>
+      </div>
+      <div class="nav-row t">
+        <span class="row-lbl">★ 自测</span>
+        <a href="#quiz"><span class="num">Q</span>8 题通关</a>
+      </div>
+    </nav>
+  </div>
+  <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+</div>
+
+<!-- 头部 -->
+<header class="header">
+  <div class="header-inner">
+    <div class="issue"><span id="issueLabel">Pre-Class Self-Study · 课前自学模块</span></div>
+    <h1 id="mainTitle">体外循环术后危象：<br>两幕戏、一个病人</h1>
+    <p class="subtitle" id="mainSubtitle">
+      70 岁男性，风湿性心脏病二次瓣膜置换，CPB 220 分钟。你将在模拟中心连续经历两个情境——情境 A 让你打破重度休克，而你的每个抢救决策，都在为情境 B 的新危机埋下伏笔。
+    </p>
+    <div class="byline">
+      <div><div class="label">Audience</div><div class="val">ICU 专科医师规培 (PGY 2-3)</div></div>
+      <div><div class="label">Standards</div><div class="val">INACSL SOBP · 2021 住培指南</div></div>
+      <div><div class="label">Pass Threshold</div><div class="val">6/8 解锁现场模拟</div></div>
+    </div>
+
+    <!-- 时间线 -->
+    <div class="timeline">
+      <div class="timeline-label">Case Timeline · 病例时间轴</div>
+      <div class="timeline-track">
+        <div class="timeline-nodes">
+          <div class="tl-node"><div class="tl-dot"></div><div class="tl-time">T 0</div><div class="tl-label">转入 ICU</div></div>
+          <div class="tl-node"><div class="tl-dot a"></div><div class="tl-time">T+4h</div><div class="tl-label"><b>情境 A</b>休克告急</div></div>
+          <div class="tl-node"><div class="tl-dot a"></div><div class="tl-time">T+6h</div><div class="tl-label">体循环稳定</div></div>
+          <div class="tl-node"><div class="tl-dot b"></div><div class="tl-time">T+8h</div><div class="tl-label"><b>情境 B</b>保护右心</div></div>
+          <div class="tl-node"><div class="tl-dot end"></div><div class="tl-time">T+24h</div><div class="tl-label">平稳过关</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ==================== 情境 A ==================== -->
+<!-- ==================== A 期回顾 · 强化认知连接 ==================== -->
+<div class="scenario-banner a" id="recap" data-mode="v2b" style="opacity:0.85;background:linear-gradient(to right,#f5f3ef 0%,#fff 100%)">
+  <div class="sc-meta">Recap · 3 min</div>
+  <div class="sc-tag">🔙 回顾 · 1-2 周前你做过什么</div>
+  <div class="sc-title">情境 A · 你那天的抢救</div>
+  <div class="sc-sub">在进入新的危机之前，先让我们把上次的决策重新拉回记忆。</div>
+</div>
+
+<section class="section" id="m0" data-mode="v2b">
+  <div class="section-tag a">A 期回顾 · 约 3 min</div>
+  <h2>上次课你做了什么？</h2>
+  <p class="lede">
+    1-2 周前，你接手了这位 70 岁男性。还记得吗？他刚从手术室转到 ICU 4 小时，风湿性心脏病二次二尖瓣置换 + 三尖瓣成形，CPB 220 分钟。你在 30 分钟内做了四件事。
+  </p>
+
+  <div class="callout key">
+    <div class="tag">四条治疗线 · A 期总览</div>
+    <p>
+      ① <strong>识别 LCOS</strong>：CI 1.7 + SvO₂ 55% + LV 收缩弱 = 心肌顿抑<br>
+      ② <strong>双剑合璧</strong>：米力农 0.375 μg/kg/min 维持（省略负荷）+ IABP 1:1 反搏<br>
+      ③ <strong>TEG 靶向止血</strong>：LY30 12% → TXA；R 15 → FFP；MA 38 → 血小板<br>
+      ④ <strong>唤醒血管</strong>：加压素 + 亚甲蓝 1-2 mg/kg 15-30 min 慢滴
+    </p>
+  </div>
+
+  <p>
+    2 小时后（T + 06:00）你离开病房，交班给夜班同事的时候，记录是这样的：
+  </p>
+
+  <div class="snapshot">
+    <div class="snapshot-head">
+      <span>A 期末交班数据 · T+06:00</span>
+      <span class="time">你离开时</span>
+    </div>
+    <div class="snapshot-grid">
+      <div class="snap-item"><div class="snap-label">MAP</div><div class="snap-val improved" style="color:#006666">78 mmHg</div><div class="snap-note">从 54 回升</div></div>
+      <div class="snap-item"><div class="snap-label">CI 心排指数</div><div class="snap-val improved" style="color:#006666">2.4 L/min/m²</div><div class="snap-note">从 1.7 回升</div></div>
+      <div class="snap-item"><div class="snap-label">SvO2</div><div class="snap-val improved" style="color:#006666">68%</div><div class="snap-note">从 55% 回升</div></div>
+      <div class="snap-item"><div class="snap-label">去甲肾上腺素</div><div class="snap-val improved" style="color:#006666">0.3 μg/kg/min</div><div class="snap-note">从 0.8 减至 0.3</div></div>
+      <div class="snap-item"><div class="snap-label">引流</div><div class="snap-val improved" style="color:#006666">30 ml/h</div><div class="snap-note">从 280 降至 30</div></div>
+      <div class="snap-item"><div class="snap-label">累计输入</div><div class="snap-val" style="color:#c41230">约 4500 ml</div><div class="snap-note">FFP+PLT+晶体</div></div>
+    </div>
+  </div>
+
+  <blockquote class="quote">
+    "这是一场漂亮的抢救。每一个关键点你都判断正确，MAP 从 54 稳到 78，大出血控制住了，血管麻痹也逆转了。"<br>
+    —— <strong>但请记住：你在这 2 小时里输入了大约 4500 ml 液体和血制品。</strong>
+    <cite>— 上次课结束时教员给你的话</cite>
+  </blockquote>
+
+  <div class="callout warn">
+    <div class="tag">▸ 上次课留给你的思考题</div>
+    <p>
+      <em>"你用了这么多液体把血压救回来了。</em><br>
+      <em>如果这些液体在 SIRS 毛细血管渗漏的背景下，大量渗到肺里，会发生什么？</em><br>
+      <em>你的心脏、肺、肾，会出什么问题？"</em><br><br>
+      这个问题的答案，就是本次课要学的内容。
+    </p>
+  </div>
+</section>
+
+<div class="scenario-banner a" id="sc-a" data-mode="v1 v2a">
+  <div class="sc-meta">12 min</div>
+  <div class="sc-tag">Scenario A · 情境一</div>
+  <div class="sc-title">破局休克：大出血 + 低心排 + 血管麻痹</div>
+  <div class="sc-sub">转入 ICU 4 小时后，你面对的是一个"三线同时崩溃"的病人。</div>
+</div>
+
+<div class="objectives a" data-mode="v1 v2a">
+  <div class="obj-label">Scenario A · Learning Objectives</div>
+  <ol>
+    <li>能够从 CI &lt; 2.0 + SvO2 &lt; 60% + POCUS LV 收缩弱识别心肌顿抑所致低心排综合征 (LCOS)</li>
+    <li>能够合理使用正性肌力扩血管药（米力农）并掌握"省略负荷剂量"的救命细节</li>
+    <li>理解 IABP 在 LCOS 中的"双向价值"——舒张期增冠脉灌注、收缩期降左心后负荷</li>
+    <li>能够将 TEG 的 R 时间、MA、LY30 转化为具体输血决策</li>
+    <li>能够识别血管麻痹综合征，并掌握亚甲蓝作为 sGC 抑制剂的机制、剂量与禁忌</li>
+  </ol>
+</div>
+
+<!-- ==================== A1: LCOS ==================== -->
+<section class="section" id="m1" data-mode="v1 v2a">
+  <div class="section-tag a">Module A-1 · 约 4 min · <span class="time">04:00</span></div>
+  <h2>LCOS：缺血再灌注打击下的"沉睡"心肌</h2>
+  <p class="lede">
+    CPB 220 分钟 + 再灌注损伤 + 钙超载和氧自由基爆发——你的病人心肌不是"坏死了"，而是"顿抑了"。好消息是它还活着；坏消息是，它可能要 24–72 小时才能"醒来"。
+  </p>
+
+  <p>
+    低心排综合征 (Low Cardiac Output Syndrome, LCOS) 是心外科术后最常见的严重并发症，发生率 3–14%<sup>[1]</sup>。其核心病理机制是<strong>心肌顿抑 (myocardial stunning)</strong>——长时间主动脉阻断造成缺血再灌注损伤，钙超载和氧自由基使心肌细胞<strong>暂时性</strong>失去收缩力，但细胞结构完整。这个"暂时"通常是 <strong>24–72 小时</strong>，你的任务是在这段时间内用药物和机械辅助"替心脏顶着"。
+  </p>
+
+  <div class="snapshot">
+    <div class="snapshot-head">
+      <span>Patient Snapshot · 情境 A 初始数据</span>
+      <span class="time">T + 4h | ICU Bed 12</span>
+    </div>
+    <div class="snapshot-grid">
+      <div class="snap-item"><div class="snap-label">MAP</div><div class="snap-val alert">54 mmHg</div><div class="snap-note">82 / 40 mmHg</div></div>
+      <div class="snap-item"><div class="snap-label">心率</div><div class="snap-val alert">115 bpm</div><div class="snap-note">心房颤动</div></div>
+      <div class="snap-item"><div class="snap-label">CI 心排指数</div><div class="snap-val low">1.7 L/min/m²</div><div class="snap-note">正常 ≥ 2.5</div></div>
+      <div class="snap-item"><div class="snap-label">SvO2 混合静脉血氧饱和度</div><div class="snap-val low">55%</div><div class="snap-note">正常 65-75%</div></div>
+      <div class="snap-item"><div class="snap-label">CVP</div><div class="snap-val">14 mmHg</div><div class="snap-note">轻度升高</div></div>
+      <div class="snap-item"><div class="snap-label">PAWP</div><div class="snap-val">16 mmHg</div><div class="snap-note">接近左心充盈</div></div>
+      <div class="snap-item"><div class="snap-label">去甲肾上腺素</div><div class="snap-val alert">0.8 μg/kg/min</div><div class="snap-note">已极高剂量</div></div>
+      <div class="snap-item"><div class="snap-label">尿量</div><div class="snap-val alert">10 ml / 2h</div><div class="snap-note">近乎无尿</div></div>
+      <div class="snap-item"><div class="snap-label">引流量</div><div class="snap-val alert">280 ml/hr</div><div class="snap-note">鲜红色</div></div>
+      <div class="snap-item"><div class="snap-label">POCUS</div><div class="snap-val low">LV 普遍收缩弱</div><div class="snap-note">LVOT VTI ↓↓</div></div>
+    </div>
+  </div>
+
+  <div class="callout key">
+    <div class="tag">LCOS 诊断"三要素"</div>
+    <p>
+      <strong>① CI &lt; 2.0 L/min/m²</strong>（泵功能不足）<br>
+      <strong>② SvO2 &lt; 60%</strong>（组织为了代偿，把最后一滴氧都抽走了）<br>
+      <strong>③ 临床低灌注征象</strong>（CRT &gt; 3s、少尿、乳酸升高、冷四肢）<br>
+      本例三条全中，且已经超越<em>亚临床 LCOS</em>，属于<strong>失代偿型 LCOS 合并重度休克</strong>——必须立即"泵 + IABP"双管齐下。
+    </p>
+  </div>
+
+  <p>
+    这里有一个关键的鉴别思维——<strong>LCOS 不是单纯的"低血压"</strong>。高剂量去甲肾上腺素下 MAP 仍然 54 mmHg，表面看像血管麻痹，但 SvO2 只有 55% 和 LV 收缩弱的 POCUS 证据，告诉你问题的核心在<strong>泵功能</strong>。如果你把它误认作"单纯血管麻痹"，只加缩血管药，不但不能改善氧输送，反而会进一步增加本已疲软心脏的后负荷，把病人送进死亡螺旋。
+  </p>
+
+  <blockquote class="quote">
+    心外科术后休克的鉴别三问：①泵的问题？(CI、SvO2、POCUS) ②管道的问题？(SVR、MAP对血管活性药的反应) ③桶的问题？(CVP、下腔静脉呼吸变异率) 本例的答案是"以 ①为主 + ②并存"——所以治疗也必须两条线同时打。
+    <cite>— 基于第一性原理的 Shock Triage 框架</cite>
+  </blockquote>
+</section>
+
+<!-- ==================== A2: IABP + 米力农 ==================== -->
+<section class="section" id="m2" data-mode="v1 v2a">
+  <div class="section-tag a">Module A-2 · 约 4 min · <span class="time">04:00</span></div>
+  <h2>双剑合璧：米力农 + IABP</h2>
+  <p class="lede">
+    米力农帮心脏"出力"，IABP 帮心脏"省力"——两个动作同时做，才叫真正的 LCOS 救治。
+  </p>
+
+  <p>
+    <strong>米力农 (Milrinone)</strong> 是磷酸二酯酶 III 抑制剂，通过升高心肌细胞内 cAMP <strong>同时增强心肌收缩力 + 扩张外周血管（降低后负荷）</strong>，即"inodilator"（正性肌力扩血管）。对于儿茶酚胺"失灵"的 LCOS 患者尤其有效，因为它绕开了 β 受体通路，不依赖儿茶酚胺敏感性。
+  </p>
+
+  <div class="callout warn">
+    <div class="tag">Critical Safety Point · 救命细节</div>
+    <p>
+      米力农常规剂量是<strong>负荷量 25–50 μg/kg 快推 10 分钟，然后 0.375–0.75 μg/kg/min 持续泵入</strong>。但对于<strong>血流动力学极度不稳定的重度休克患者（本例即是）</strong>，必须<strong>省略负荷剂量</strong>，直接以维持剂量泵入——否则负荷剂量诱导的血管扩张会瞬间诱发致死性低血压。<br>
+      <em>"很多规培学员在这里死在了书本上——他们记得'标准剂量'，忘了问'这个病人血压能不能承受'。"</em>
+    </p>
+  </div>
+
+  <p>
+    单用米力农还不够。本例去甲肾上腺素已达 0.8 μg/kg/min，心脏已经筋疲力尽，此时<strong>降低后负荷的物理方式</strong>——IABP——成为救命稻草。
+  </p>
+
+  <div class="heart-iabp">
+    <div class="heart-iabp-wrap">
+      <svg viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg">
+        <!-- 标题 -->
+        <text x="340" y="26" text-anchor="middle" font-family="Source Serif 4" font-size="14" font-style="italic" fill="#555">
+          IABP 心动周期流程图 · 一次反搏的四个动作
+        </text>
+
+        <!-- 心电图触发波 (顶部参考) -->
+        <g transform="translate(40,55)">
+          <text x="0" y="0" font-family="Source Sans 3" font-size="9.5" fill="#888" font-weight="600">ECG 触发</text>
+          <path d="M 0,18 L 60,18 L 65,10 L 70,22 L 75,6 L 80,28 L 85,18 L 130,18 L 135,20 L 165,10 L 180,28 L 185,18 L 245,18 L 250,10 L 255,22 L 260,6 L 265,28 L 270,18 L 315,18 L 320,20 L 350,10 L 365,28 L 370,18 L 600,18"
+                fill="none" stroke="#2a3967" stroke-width="1.2"/>
+          <!-- R 波标记 -->
+          <text x="78" y="0" font-family="JetBrains Mono" font-size="8" fill="#c41230" text-anchor="middle">R</text>
+          <text x="258" y="0" font-family="JetBrains Mono" font-size="8" fill="#c41230" text-anchor="middle">R</text>
+        </g>
+
+        <!-- 主动脉压曲线 (对比显示反搏效应) -->
+        <g transform="translate(40,95)">
+          <text x="0" y="0" font-family="Source Sans 3" font-size="9.5" fill="#888" font-weight="600">主动脉压</text>
+          <!-- 坐标基线 -->
+          <line x1="0" y1="60" x2="600" y2="60" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2,2"/>
+          <!-- 无辅助压力曲线 (灰色) -->
+          <path d="M 0,50 Q 40,25 80,18 Q 100,18 120,45 L 140,55 Q 160,48 180,55 L 200,58"
+                fill="none" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <text x="155" y="72" font-family="Source Sans 3" font-size="9" fill="#888" font-style="italic">无辅助</text>
+
+          <!-- 有辅助压力曲线 (红色) -->
+          <!-- 第1个心跳:收缩峰 → 降主动脉 切迹(收缩前抽气降低) → 舒张充气高峰 -->
+          <path d="M 200,58 Q 220,30 240,18 L 248,22 L 258,48 Q 265,15 285,8 Q 300,18 310,55 L 320,60"
+                fill="none" stroke="#c41230" stroke-width="2"/>
+          <!-- 第2个心跳 -->
+          <path d="M 320,60 Q 340,32 360,20 L 368,24 L 378,50 Q 385,17 405,10 Q 420,20 430,56 L 440,60"
+                fill="none" stroke="#c41230" stroke-width="2"/>
+
+          <!-- 标记：舒张增压 -->
+          <circle cx="285" cy="8" r="3" fill="#c41230"/>
+          <text x="285" y="-4" text-anchor="middle" font-family="Source Sans 3" font-size="9" fill="#c41230" font-weight="700">舒张增压 ↑</text>
+
+          <!-- 标记：收缩卸载 -->
+          <circle cx="248" cy="22" r="3" fill="#5b3f99"/>
+          <text x="248" y="92" text-anchor="middle" font-family="Source Sans 3" font-size="9" fill="#5b3f99" font-weight="700">收缩卸载 ↓</text>
+
+          <text x="430" y="72" font-family="Source Sans 3" font-size="9" fill="#c41230" font-style="italic">有辅助</text>
+        </g>
+
+        <!-- 4步流程图 - 主体 -->
+        <g transform="translate(0, 220)">
+          <!-- 箭头定义 -->
+          <defs>
+            <marker id="arr-flow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <polygon points="0 0, 8 5, 0 10" fill="#2a3967"/>
+            </marker>
+          </defs>
+
+          <!-- Step 1: R 波触发 -->
+          <g transform="translate(30,0)">
+            <rect width="130" height="110" rx="3" fill="#eef1f8" stroke="#2a3967" stroke-width="1.5"/>
+            <text x="65" y="20" text-anchor="middle" font-family="Source Sans 3" font-size="10" font-weight="700" fill="#2a3967" letter-spacing="1">STEP 1</text>
+            <line x1="15" y1="28" x2="115" y2="28" stroke="#2a3967" stroke-width="0.5" opacity="0.3"/>
+            <text x="65" y="46" text-anchor="middle" font-family="Source Sans 3" font-size="12" font-weight="700" fill="#1a1a1a">R 波触发</text>
+            <text x="65" y="64" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#555">机器识别</text>
+            <text x="65" y="78" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#555">QRS 波为同步信号</text>
+            <!-- 迷你心电 -->
+            <path d="M 20,95 L 45,95 L 50,88 L 55,100 L 60,82 L 65,105 L 70,95 L 110,95"
+                  fill="none" stroke="#c41230" stroke-width="1"/>
+          </g>
+          <path d="M 162,55 L 188,55" stroke="#2a3967" stroke-width="2" marker-end="url(#arr-flow)"/>
+
+          <!-- Step 2: 舒张期充气 -->
+          <g transform="translate(190,0)">
+            <rect width="140" height="110" rx="3" fill="#fbeef1" stroke="#c41230" stroke-width="1.5"/>
+            <text x="70" y="20" text-anchor="middle" font-family="Source Sans 3" font-size="10" font-weight="700" fill="#c41230" letter-spacing="1">STEP 2</text>
+            <line x1="15" y1="28" x2="125" y2="28" stroke="#c41230" stroke-width="0.5" opacity="0.3"/>
+            <text x="70" y="46" text-anchor="middle" font-family="Source Sans 3" font-size="12" font-weight="700" fill="#1a1a1a">舒张期充气</text>
+            <text x="70" y="62" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#555">主动脉瓣刚关闭</text>
+            <!-- 气囊图示 -->
+            <ellipse cx="70" cy="85" rx="32" ry="10" fill="#c41230" opacity="0.75"/>
+            <text x="70" y="103" text-anchor="middle" font-family="Source Sans 3" font-size="9" fill="#c41230" font-weight="600">氦气 40ml 充气 ⇱</text>
+          </g>
+          <path d="M 332,55 L 358,55" stroke="#2a3967" stroke-width="2" marker-end="url(#arr-flow)"/>
+
+          <!-- Step 3: 收缩前抽气 -->
+          <g transform="translate(360,0)">
+            <rect width="140" height="110" rx="3" fill="#f2edf7" stroke="#5b3f99" stroke-width="1.5"/>
+            <text x="70" y="20" text-anchor="middle" font-family="Source Sans 3" font-size="10" font-weight="700" fill="#5b3f99" letter-spacing="1">STEP 3</text>
+            <line x1="15" y1="28" x2="125" y2="28" stroke="#5b3f99" stroke-width="0.5" opacity="0.3"/>
+            <text x="70" y="46" text-anchor="middle" font-family="Source Sans 3" font-size="12" font-weight="700" fill="#1a1a1a">收缩前抽气</text>
+            <text x="70" y="62" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#555">主动脉瓣即将开启</text>
+            <ellipse cx="70" cy="85" rx="10" ry="4" fill="#5b3f99" opacity="0.75"/>
+            <text x="70" y="103" text-anchor="middle" font-family="Source Sans 3" font-size="9" fill="#5b3f99" font-weight="600">⇲ 瞬时抽气 · "真空"</text>
+          </g>
+          <path d="M 502,55 L 528,55" stroke="#2a3967" stroke-width="2" marker-end="url(#arr-flow)"/>
+
+          <!-- Step 4: 下一循环 -->
+          <g transform="translate(530,0)">
+            <rect width="120" height="110" rx="3" fill="#edf4ef" stroke="#006666" stroke-width="1.5"/>
+            <text x="60" y="20" text-anchor="middle" font-family="Source Sans 3" font-size="10" font-weight="700" fill="#006666" letter-spacing="1">STEP 4</text>
+            <line x1="15" y1="28" x2="105" y2="28" stroke="#006666" stroke-width="0.5" opacity="0.3"/>
+            <text x="60" y="46" text-anchor="middle" font-family="Source Sans 3" font-size="12" font-weight="700" fill="#1a1a1a">等待下次 R 波</text>
+            <text x="60" y="62" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#555">1:1 反搏</text>
+            <text x="60" y="78" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#555">每心跳辅助 1 次</text>
+            <text x="60" y="96" text-anchor="middle" font-family="Source Sans 3" font-size="14" fill="#006666">↻</text>
+          </g>
+        </g>
+
+        <!-- 下方：生理净效应 -->
+        <g transform="translate(0, 350)">
+          <line x1="40" y1="0" x2="640" y2="0" stroke="#d4d4d4" stroke-width="1"/>
+          <text x="40" y="18" font-family="Source Sans 3" font-size="10" fill="#888" font-weight="700" letter-spacing="1">NET PHYSIOLOGIC EFFECT · 生理净效应</text>
+
+          <!-- 3个关键收益 -->
+          <g transform="translate(60, 30)">
+            <text x="0" y="14" font-family="Source Sans 3" font-size="11" fill="#1a1a1a" font-weight="600">冠脉灌注</text>
+            <text x="80" y="14" font-family="JetBrains Mono" font-size="13" fill="#006666" font-weight="700">↑ +30~40%</text>
+          </g>
+          <g transform="translate(270, 30)">
+            <text x="0" y="14" font-family="Source Sans 3" font-size="11" fill="#1a1a1a" font-weight="600">LV 后负荷</text>
+            <text x="80" y="14" font-family="JetBrains Mono" font-size="13" fill="#006666" font-weight="700">↓ -15~20%</text>
+          </g>
+          <g transform="translate(470, 30)">
+            <text x="0" y="14" font-family="Source Sans 3" font-size="11" fill="#1a1a1a" font-weight="600">心肌氧耗</text>
+            <text x="80" y="14" font-family="JetBrains Mono" font-size="13" fill="#006666" font-weight="700">↓ -25%</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <div class="phase-ctrl">
+      <button class="phase-btn active" data-phase="diastole">▶ Step 2 · 舒张期充气</button>
+      <button class="phase-btn" data-phase="systole">▶ Step 3 · 收缩前抽气</button>
+      <button class="phase-btn" data-phase="overview">整体视角</button>
+    </div>
+    <div class="phase-desc" id="phaseDesc">
+      <b>Step 2 · 舒张期充气</b>：主动脉瓣关闭瞬间，气囊充入约 40 ml 氦气（物理"顶"血），瞬时提高主动脉根部压力。<b>冠脉血流 90% 发生在舒张期</b>，所以这个动作直接增加缺血心肌的氧供——对 LCOS 病人的顿抑心肌是"精确输氧"。
+    </div>
+  </div>
+
+  <div class="callout pearl">
+    <div class="tag">Evidence · 《主动脉内球囊反搏心脏外科围手术期应用专家共识》2017</div>
+    <p>IABP 在心外科围手术期应用中，<strong>"术中/术后低心排"是最主要的适应症</strong>。临床有效反搏判断：收缩压辅助增益 15-20 mmHg、舒张压增益 20 mmHg 以上、尿量 &gt; 0.5 ml/kg/h、乳酸下降<sup>[2]</sup>。记住：IABP 不是终极武器——<strong>"IABP 植入 10 小时后仍然乳酸 &gt; 11 mmol/L 的患者死亡率 100%"</strong>，此时必须升级到 ECMO<sup>[2]</sup>。</p>
+  </div>
+</section>
+
+<!-- ==================== A3: TEG ==================== -->
+<section class="section" id="m3" data-mode="v1 v2a">
+  <div class="section-tag a">Module A-3 · 约 2.5 min · <span class="time">02:30</span></div>
+  <h2>TEG 三靶点：一张图的精准止血</h2>
+  <p class="lede">
+    一张 TEG 图三个数字，告诉你要补血浆、补血小板还是用氨甲环酸——比"拉出来问问血液科"快 30 分钟。
+  </p>
+
+  <p>
+    血栓弹力图 (TEG) 在 10–15 分钟内提供从凝血启动到纤溶的完整动态信息<sup>[3][4]</sup>。记住三个关键参数和它们对应的治疗：
+  </p>
+
+  <div class="teg-interactive">
+    <div class="teg-graph-wrap">
+      <svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="110" x2="540" y2="110" stroke="#888" stroke-width="1"/>
+        <line x1="40" y1="20" x2="40" y2="200" stroke="#888" stroke-width="1"/>
+        <text x="40" y="215" font-family="JetBrains Mono" font-size="9" fill="#888" text-anchor="middle">0</text>
+        <text x="300" y="215" font-family="JetBrains Mono" font-size="9" fill="#888" text-anchor="middle">time →</text>
+        <text x="35" y="25" font-family="JetBrains Mono" font-size="9" fill="#888" text-anchor="end">+MA</text>
+        <text x="35" y="115" font-family="JetBrains Mono" font-size="9" fill="#888" text-anchor="end">0</text>
+        <text x="35" y="200" font-family="JetBrains Mono" font-size="9" fill="#888" text-anchor="end">−MA</text>
+        <line id="rLine" x1="90" y1="15" x2="90" y2="205" stroke="#c41230" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+        <text id="rLabel" x="92" y="25" font-family="JetBrains Mono" font-size="10" fill="#c41230" font-weight="600">R</text>
+        <path id="tegUp" d="" fill="none" stroke="#2a3967" stroke-width="2.5"/>
+        <path id="tegDown" d="" fill="none" stroke="#2a3967" stroke-width="2.5"/>
+        <path id="tegFill" d="" fill="#2a3967" opacity="0.15"/>
+        <line id="maLine" x1="540" y1="60" x2="540" y2="160" stroke="#5b3f99" stroke-width="2"/>
+        <text id="maLabel" x="548" y="110" font-family="JetBrains Mono" font-size="10" fill="#5b3f99" font-weight="600">MA</text>
+      </svg>
+    </div>
+    <div class="teg-sliders">
+      <div class="slider-group">
+        <div class="lab"><b>R 时间</b><span id="rVal">15 min</span></div>
+        <input type="range" id="rSlider" min="3" max="20" step="0.5" value="15">
+        <div class="range-scale"><span>3</span><span>正常 5-10</span><span>20 min</span></div>
+      </div>
+      <div class="slider-group">
+        <div class="lab"><b>MA 值</b><span id="maVal">38 mm</span></div>
+        <input type="range" id="maSlider" min="20" max="75" step="1" value="38">
+        <div class="range-scale"><span>20</span><span>正常 50-70</span><span>75 mm</span></div>
+      </div>
+      <div class="slider-group">
+        <div class="lab"><b>LY30</b><span id="lyVal">12 %</span></div>
+        <input type="range" id="lySlider" min="0" max="25" step="0.5" value="12">
+        <div class="range-scale"><span>0</span><span>&lt;3% 正常</span><span>25 %</span></div>
+      </div>
+    </div>
+    <div class="teg-verdict" id="tegVerdict">
+      <div class="v-title">Interpretation</div>
+      <div id="tegText">调节三个参数，查看治疗建议。</div>
+    </div>
+  </div>
+
+  <div class="callout key">
+    <div class="tag">Triage Rule of Three · TEG 三原则</div>
+    <p>
+      <strong>R &gt; 10 min</strong> → 凝血因子不足 → <span style="color:var(--nejm-red);font-weight:600">FFP 10–15 ml/kg</span><br>
+      <strong>MA &lt; 50 mm</strong> → 血小板/纤维蛋白原不足 → <span style="color:var(--nejm-red);font-weight:600">血小板 ± 冷沉淀</span><br>
+      <strong>LY30 &gt; 3%</strong> → 纤溶亢进 → <span style="color:var(--nejm-red);font-weight:600">氨甲环酸 10–15 mg/kg</span><br>
+      注：LY30 正常上限在老款 TEG 5000 是 7.5%，但近年心脏外科和创伤研究支持用 <strong>3%</strong> 作为启动抗纤溶的临床相关阈值<sup>[5]</sup>。
+    </p>
+  </div>
+</section>
+
+<!-- ==================== A4: 血管麻痹 ==================== -->
+<section class="section" id="m4" data-mode="v1 v2a">
+  <div class="section-tag a">Module A-4 · 约 1.5 min · <span class="time">01:30</span></div>
+  <h2>血管麻痹：去甲失灵怎么办</h2>
+  <p class="lede">
+    纠正了泵 + 处理了出血，但去甲肾上腺素仍然"推不动"血管——这时是亚甲蓝上场的时候。
+  </p>
+
+  <p>
+    CPB 后血管麻痹综合征 (VS) 的发生率 5–25%<sup>[6]</sup>。机制：CPB 炎症激活 iNOS，大量 NO 通过 sGC-cGMP 通路使血管平滑肌持续舒张，并使儿茶酚胺受体"脱敏"。继续加量去甲无效——<strong>必须阻断通路本身</strong>。
+  </p>
+
+  <div class="pathway-box">
+    <div class="pathway-svg">
+      <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="100" width="110" height="60" fill="#fbeef1" stroke="#c41230" stroke-width="1.5" rx="2"/>
+        <text x="75" y="125" text-anchor="middle" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#c41230">CPB 炎症</text>
+        <text x="75" y="143" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#c41230">SIRS</text>
+
+        <path d="M 130,130 L 165,130" stroke="#333" stroke-width="1.5" marker-end="url(#arr-dark)"/>
+
+        <rect x="165" y="100" width="100" height="60" fill="#fff8e7" stroke="#b8860b" stroke-width="1.5" rx="2"/>
+        <text x="215" y="125" text-anchor="middle" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#b8860b">iNOS ↑</text>
+        <text x="215" y="143" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#b8860b">诱导型合酶</text>
+
+        <path d="M 265,130 L 300,130" stroke="#333" stroke-width="1.5" marker-end="url(#arr-dark)"/>
+
+        <ellipse cx="335" cy="130" rx="30" ry="30" fill="#edf4ef" stroke="#006666" stroke-width="1.5"/>
+        <text x="335" y="128" text-anchor="middle" font-family="Source Sans 3" font-size="13" font-weight="700" fill="#006666">NO</text>
+        <text x="335" y="142" text-anchor="middle" font-family="Source Sans 3" font-size="9" fill="#006666">↑↑</text>
+
+        <path d="M 365,130 L 400,130" stroke="#333" stroke-width="1.5" marker-end="url(#arr-dark)"/>
+
+        <rect x="400" y="100" width="100" height="60" fill="#eef1f8" stroke="#2a3967" stroke-width="1.5" rx="2"/>
+        <text x="450" y="122" text-anchor="middle" font-family="Source Sans 3" font-size="12" font-weight="600" fill="#2a3967">sGC 激活</text>
+        <text x="450" y="140" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#2a3967">→ cGMP ↑</text>
+
+        <path d="M 500,130 L 535,130" stroke="#333" stroke-width="1.5" marker-end="url(#arr-dark)"/>
+
+        <rect x="535" y="100" width="125" height="60" fill="#fbeef1" stroke="#c41230" stroke-width="1.5" rx="2"/>
+        <text x="597" y="120" text-anchor="middle" font-family="Source Sans 3" font-size="11" font-weight="700" fill="#c41230">血管麻痹</text>
+        <text x="597" y="136" text-anchor="middle" font-family="Source Sans 3" font-size="9" fill="#c41230">儿茶酚胺脱敏</text>
+        <text x="597" y="150" text-anchor="middle" font-family="Source Sans 3" font-size="9" fill="#c41230">MAP ↓↓</text>
+
+        <g id="mbBlock">
+          <line x1="375" y1="195" x2="375" y2="130" stroke="#5b3f99" stroke-width="2" stroke-dasharray="4,3"/>
+          <polygon points="375,125 370,135 380,135" fill="#5b3f99"/>
+          <rect x="315" y="205" width="120" height="44" fill="#5b3f99" rx="2"/>
+          <text x="375" y="222" text-anchor="middle" font-family="Source Sans 3" font-size="12" font-weight="700" fill="#fff">亚甲蓝</text>
+          <text x="375" y="238" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#fff">sGC 抑制剂</text>
+          <g transform="translate(440,130)">
+            <line x1="-6" y1="-6" x2="6" y2="6" stroke="#c41230" stroke-width="3"/>
+            <line x1="6" y1="-6" x2="-6" y2="6" stroke="#c41230" stroke-width="3"/>
+          </g>
+        </g>
+
+        <defs>
+          <marker id="arr-dark" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+            <polygon points="0 0, 6 4, 0 8" fill="#333"/>
+          </marker>
+        </defs>
+
+        <text x="340" y="30" text-anchor="middle" font-family="Source Serif 4" font-size="13" font-style="italic" fill="#555">NO–cGMP 通路 · 亚甲蓝的精确靶点</text>
+      </svg>
+    </div>
+
+    <div class="mb-compare">
+      <div class="mb-card dose">
+        <span class="badge">Dosing</span>
+        <h5>亚甲蓝怎么给？</h5>
+        <ul>
+          <li>1–2 mg/kg IV，15–30 min 输注</li>
+          <li>起效 &lt; 2 小时，作用持续 4–6 小时</li>
+          <li>必要时可 0.25–2 mg/kg/h 持续泵入</li>
+          <li>尿液变蓝绿色为正常现象</li>
+        </ul>
+      </div>
+      <div class="mb-card caution">
+        <span class="badge">Caution</span>
+        <h5>用之前先问自己</h5>
+        <ul>
+          <li>G6PD 缺乏 ↦ 可诱发溶血，<strong>禁用</strong></li>
+          <li>同时用 SSRI/MAOI ↦ 5-HT 综合征风险</li>
+          <li>剂量 &gt; 2 mg/kg 可减少冠脉血流</li>
+          <li>作用消退后可能反跳低血压</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout pearl">
+    <div class="tag">Evidence Update · 2024</div>
+    <p>
+      <strong>2024 EACTS/EACTAIC/EBCP 指南</strong>将亚甲蓝用于 α1 难治性血管麻痹推荐为 <strong>Class IIa, Level B</strong><sup>[7][8]</sup>。<strong>早期使用</strong>（诊断后 15 分钟内）比晚期挽救使用能显著降低死亡率<sup>[9]</sup>——这意味着一旦识别血管麻痹，不要犹豫。
+    </p>
+  </div>
+</section>
+
+<!-- ==================== 过渡：A→B ==================== -->
+<div class="bridge" data-mode="v1">
+  <div class="bridge-title">Scenario Transition · 情境切换</div>
+  <div class="bridge-body">
+    情境 A 的胜利——MAP 稳定、引流控制——是用<strong>大量液体、FFP、血小板</strong>换来的。<br>
+    而这些救命的液体，正在悄悄把你的病人推向情境 B 的深渊。
+  </div>
+  <div class="bridge-arrow">▼</div>
+  <div class="bridge-body" style="font-size:14px;font-style:normal">
+    <strong>T + 8h</strong>：气道峰压开始上升，CVP 从 14 飙到 24，再次 POCUS……
+  </div>
+</div>
+
+<!-- ==================== 情境 B ==================== -->
+<div class="scenario-banner b" id="sc-b" data-mode="v1 v2b">
+  <div class="sc-meta">13 min</div>
+  <div class="sc-tag">Scenario B · 情境二</div>
+  <div class="sc-title">保护右心：一场液体的代价</div>
+  <div class="sc-sub">情境 A 的治疗本身，成了情境 B 的病因——这就是真实的 ICU。</div>
+</div>
+
+<div class="objectives b" data-mode="v1 v2b">
+  <div class="obj-label">Scenario B · Learning Objectives</div>
+  <ol>
+    <li>能够推演"大量输液 → 肺水肿 → PVR↑ → 急性右心衰 → 肾静脉高压 → AKI"的多米诺骨牌链条</li>
+    <li>能够通过 CVP 突然上升 + POCUS D 字征识别"二次打击"型急性右心衰</li>
+    <li>掌握 iNO 的剂量、机制和<strong>缓慢阶梯式撤机</strong>以避免反跳性肺动脉高压</li>
+    <li>能够制定"白蛋白拉水 → 利尿排水 → CRRT 截断"的三步阶梯容量管理</li>
+  </ol>
+</div>
+
+<!-- ==================== B1: 多米诺链条 + 右心衰 ==================== -->
+<section class="section" id="m5" data-mode="v1 v2b">
+  <div class="section-tag b">Module B-1 · 约 5 min · <span class="time">05:00</span></div>
+  <h2>二次打击：被液体推倒的右心</h2>
+  <p class="lede">
+    右心是个"脆弱的后辈"——对后负荷特别敏感。只需要 PVR 升高一点点，它就会崩溃。
+  </p>
+
+  <p>
+    真正可怕的 ICU 故事从来不是单一事件，而是<strong>连锁反应</strong>。情境 A 救命的液体给得越及时，情境 B 的危机就来得越凶猛。让我们追踪这条多米诺链条：
+  </p>
+
+  <div class="domino-box">
+    <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+      <!-- 标题 -->
+      <text x="340" y="24" text-anchor="middle" font-family="Source Serif 4" font-size="14" font-style="italic" fill="#555">从"救命"到"杀人"：六张骨牌倒下的 4 小时</text>
+
+      <!-- 六个骨牌节点 -->
+      <defs>
+        <marker id="arr-cascade" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <polygon points="0 0, 8 5, 0 10" fill="#c41230"/>
+        </marker>
+      </defs>
+
+      <!-- Node 1: 大量液体 -->
+      <g transform="translate(10,60)">
+        <rect width="140" height="80" rx="4" fill="#eef1f8" stroke="#2a3967" stroke-width="1.5"/>
+        <text x="70" y="24" text-anchor="middle" font-family="Source Sans 3" font-size="11" font-weight="700" fill="#2a3967">① 大量液体输入</text>
+        <line x1="20" y1="34" x2="120" y2="34" stroke="#2a3967" stroke-width="0.5" opacity="0.3"/>
+        <text x="70" y="52" text-anchor="middle" font-family="Source Sans 3" font-size="9.5" fill="#555">FFP + 血小板</text>
+        <text x="70" y="66" text-anchor="middle" font-family="Source Sans 3" font-size="9.5" fill="#555">+ 晶体胶体</text>
+      </g>
+      <path d="M 155,100 L 180,100" stroke="#c41230" stroke-width="2" marker-end="url(#arr-cascade)"/>
+
+      <!-- Node 2: 肺渗出 -->
+      <g transform="translate(185,60)">
+        <rect width="140" height="80" rx="4" fill="#fff8e7" stroke="#b8860b" stroke-width="1.5"/>
+        <text x="70" y="24" text-anchor="middle" font-family="Source Sans 3" font-size="11" font-weight="700" fill="#b8860b">② 肺渗出 / 水肿</text>
+        <line x1="20" y1="34" x2="120" y2="34" stroke="#b8860b" stroke-width="0.5" opacity="0.3"/>
+        <text x="70" y="52" text-anchor="middle" font-family="Source Sans 3" font-size="9.5" fill="#555">SIRS + 毛细血管</text>
+        <text x="70" y="66" text-anchor="middle" font-family="Source Sans 3" font-size="9.5" fill="#555">渗漏叠加</text>
+      </g>
+      <path d="M 330,100 L 355,100" stroke="#c41230" stroke-width="2" marker-end="url(#arr-cascade)"/>
+
+      <!-- Node 3: 气道压 + 低氧 -->
+      <g transform="translate(360,60)">
+        <rect width="140" height="80" rx="4" fill="#fff8e7" stroke="#b8860b" stroke-width="1.5"/>
+        <text x="70" y="24" text-anchor="middle" font-family="Source Sans 3" font-size="11" font-weight="700" fill="#b8860b">③ 气道高压 + 低氧</text>
+        <line x1="20" y1="34" x2="120" y2="34" stroke="#b8860b" stroke-width="0.5" opacity="0.3"/>
+        <text x="70" y="52" text-anchor="middle" font-family="Source Sans 3" font-size="9.5" fill="#555">Peak 35 cmH₂O</text>
+        <text x="70" y="66" text-anchor="middle" font-family="Source Sans 3" font-size="9.5" fill="#555">局部低氧</text>
+      </g>
+      <path d="M 505,100 L 530,100" stroke="#c41230" stroke-width="2" marker-end="url(#arr-cascade)"/>
+
+      <!-- Node 4: PVR -->
+      <g transform="translate(535,60)">
+        <rect width="140" height="80" rx="4" fill="#fbeef1" stroke="#c41230" stroke-width="1.5"/>
+        <text x="70" y="24" text-anchor="middle" font-family="Source Sans 3" font-size="11" font-weight="700" fill="#c41230">④ PVR 骤升</text>
+        <line x1="20" y1="34" x2="120" y2="34" stroke="#c41230" stroke-width="0.5" opacity="0.3"/>
+        <text x="70" y="52" text-anchor="middle" font-family="Source Sans 3" font-size="9.5" fill="#555">肺血管阻力</text>
+        <text x="70" y="66" text-anchor="middle" font-family="Source Sans 3" font-size="9.5" fill="#555">急剧上升</text>
+      </g>
+
+      <!-- ④→⑤ 连接箭头：从 ④ 底部垂直下行,经过弯折到达 ⑤ 顶部中央 -->
+      <path d="M 605,145 L 605,180 L 460,180 L 460,215" stroke="#c41230" stroke-width="2" fill="none" marker-end="url(#arr-cascade)"/>
+
+      <!-- Node 5: 急性右心衰 -->
+      <g transform="translate(360,220)">
+        <rect width="200" height="80" rx="4" fill="#fbeef1" stroke="#c41230" stroke-width="2"/>
+        <text x="100" y="24" text-anchor="middle" font-family="Source Sans 3" font-size="11" font-weight="700" fill="#c41230">⑤ 急性肺源性心脏病</text>
+        <line x1="30" y1="34" x2="170" y2="34" stroke="#c41230" stroke-width="0.5" opacity="0.3"/>
+        <text x="100" y="52" text-anchor="middle" font-family="Source Sans 3" font-size="9.5" fill="#555">RV 扩张 · D 字征</text>
+        <text x="100" y="66" text-anchor="middle" font-family="Source Sans 3" font-size="9.5" fill="#555">CVP 14 → 24 mmHg</text>
+      </g>
+
+      <!-- ⑤→⑥ 箭头 -->
+      <path d="M 355,260 L 335,260" stroke="#c41230" stroke-width="2" marker-end="url(#arr-cascade)"/>
+
+      <!-- Node 6: 肾 AKI -->
+      <g transform="translate(130,220)">
+        <rect width="200" height="80" rx="4" fill="#fbeef1" stroke="#c41230" stroke-width="2"/>
+        <text x="100" y="24" text-anchor="middle" font-family="Source Sans 3" font-size="11" font-weight="700" fill="#c41230">⑥ 肾静脉高压 → AKI</text>
+        <line x1="30" y1="34" x2="170" y2="34" stroke="#c41230" stroke-width="0.5" opacity="0.3"/>
+        <text x="100" y="52" text-anchor="middle" font-family="Source Sans 3" font-size="9.5" fill="#555">无尿 + K⁺ ↑↑</text>
+        <text x="100" y="66" text-anchor="middle" font-family="Source Sans 3" font-size="9.5" fill="#555">静脉回流受阻</text>
+      </g>
+
+      <!-- 机制注释 -->
+      <text x="230" y="325" text-anchor="middle" font-family="Source Serif 4" font-size="11.5" font-style="italic" fill="#666">
+        高 CVP → 肾静脉瘀血 → 肾小球灌注压 ↓
+      </text>
+      <text x="460" y="325" text-anchor="middle" font-family="Source Serif 4" font-size="11.5" font-style="italic" fill="#666">
+        RV 扩张 → 室间隔左移 → LV 受压
+      </text>
+      <text x="340" y="345" text-anchor="middle" font-family="Source Serif 4" font-size="11" font-style="italic" fill="#888">
+        (这就是为什么仅仅"给肾脏补点液"会失败——根子不在肾)
+      </text>
+    </svg>
+  </div>
+
+  <div class="callout key">
+    <div class="tag">Key Insight · 第一性原理</div>
+    <p>
+      情境 B 的肾衰<strong>不是因为肾脏自身有病</strong>，而是因为<strong>高静脉压阻碍了肾脏的血液流出</strong>（肾灌注压 = MAP − CVP，当 CVP 从 14 升到 24，肾灌注压直接少了 10 mmHg）。所以给肾脏"加灌注液"只会加重右心衰——<strong>真正的救肾方法是给右心减负</strong>。这就是为什么本例在第二阶段用 iNO 和 CRRT 除水、<em>而不是</em>补液。
+    </p>
+  </div>
+
+  <div class="heart-interactive">
+    <div class="heart-svg-wrap">
+      <svg viewBox="0 0 380 320" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid3" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e8e5df" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="380" height="320" fill="url(#grid3)"/>
+
+        <path d="M 190,50 Q 70,50 60,170 Q 60,280 190,290 Q 320,280 320,170 Q 310,50 190,50 Z"
+              fill="#fff" stroke="#2a3967" stroke-width="2"/>
+
+        <path id="septum" d="M 190,80 Q 190,170 190,260" fill="none" stroke="#c41230" stroke-width="3"/>
+
+        <ellipse id="lv" cx="240" cy="170" rx="60" ry="90" fill="#fbeef1" stroke="#c41230" stroke-width="1.5" opacity="0.7"/>
+        <text id="lvLabel" x="240" y="175" text-anchor="middle" font-family="Source Sans 3" font-size="16" font-weight="700" fill="#c41230">LV</text>
+
+        <ellipse id="rv" cx="130" cy="170" rx="60" ry="90" fill="#eef1f8" stroke="#2a3967" stroke-width="1.5" opacity="0.7"/>
+        <text id="rvLabel" x="130" y="175" text-anchor="middle" font-family="Source Sans 3" font-size="16" font-weight="700" fill="#2a3967">RV</text>
+
+        <text x="190" y="305" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#888">短轴切面 · 乳头肌水平 (情境 B 演变)</text>
+      </svg>
+    </div>
+    <div class="heart-controls">
+      <h4>切换病程阶段</h4>
+      <div class="scenario-btns">
+        <button class="scenario-btn active" data-sc="normal">① 情境 A 稳定后</button>
+        <button class="scenario-btn" data-sc="rv">② 情境 B 发作 · D 字征</button>
+        <button class="scenario-btn" data-sc="ino">③ iNO + CRRT 后</button>
+      </div>
+      <div class="scenario-data" id="scData">
+<span class="key">RV 大小</span>  正常
+<span class="key">室间隔</span>    居中
+<span class="key">PAWP</span>      14 mmHg
+<span class="key">CVP</span>       14 mmHg
+<span class="key">CI</span>        2.2 L/min/m²
+<span class="key">尿量</span>      恢复中
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== B2: iNO ==================== -->
+<section class="section" id="m6" data-mode="v1 v2b">
+  <div class="section-tag b">Module B-2 · 约 4 min · <span class="time">04:00</span></div>
+  <h2>iNO：只对肺说话的"选择性武器"</h2>
+  <p class="lede">
+    吸入 NO 只扩张通气好的肺血管，不影响体循环血压——它是右心衰合并低血压时唯一"鱼和熊掌可兼得"的药物。
+  </p>
+
+  <p>
+    <strong>吸入一氧化氮 (iNO)</strong> 通过呼吸机管路输送，到达通气良好的肺泡后作用于肺血管平滑肌的 sGC，产生 cGMP 介导的舒张效应。因为 iNO 进入血液后被血红蛋白<strong>瞬时灭活</strong>（毫秒级），所以它<strong>只扩张肺血管、不降低体循环血压</strong>——这是它区别于硝酸甘油、米力农等全身性血管扩张药的根本价值<sup>[10][11]</sup>。
+  </p>
+
+  <div class="callout note">
+    <div class="tag">Dosing · iNO 实用剂量</div>
+    <p>
+      <strong>起始剂量</strong>：20 ppm（心外科术后最典型）<br>
+      <strong>剂量范围</strong>：10–40 ppm 覆盖绝大多数适应症<br>
+      <strong>监测</strong>：甲血红蛋白（MetHb）、NO₂（吸入气 NO₂ &lt; 2 ppm）<br>
+      <strong>起效</strong>：数分钟内 mPAP 降低 20-30%
+    </p>
+  </div>
+
+  <div class="callout warn">
+    <div class="tag">★ Critical · iNO 撤机必考题</div>
+    <p>
+      <strong>绝对禁止突然停药！</strong>iNO 使用 24 小时以上，肺血管床会产生"依赖性"——骤停会导致 <strong>反跳性肺动脉高压</strong>，瞬间将右心再次推向崩溃。正确做法：<br>
+      <br>
+      <strong>阶梯式减量</strong>：20 → 10 → 5 → 2 → 1 ppm，每一档观察 <strong>4-6 小时</strong>的血流动力学稳定性<br>
+      <strong>过渡桥接</strong>：准备西地那非（PDE5抑制剂）或吸入依前列醇，在 iNO &lt; 5 ppm 时启动，防反跳<br>
+      <strong>警戒信号</strong>：任何档位减量后出现 mPAP 升高 &gt; 5 mmHg 或 SpO2 下降，立即返回上一档
+    </p>
+  </div>
+
+  <blockquote class="quote">
+    iNO 救了病人的右心，但<strong>不规范的撤机</strong>能让 iNO 成为压死病人的最后一根稻草。这是规培医师的一个"隐性考点"——书本上很少强调，但临床上经常出事。
+    <cite>— 基于 2024 EACTS 心外科围手术期指南与多项 iNO 真实世界研究</cite>
+  </blockquote>
+</section>
+
+<!-- ==================== B3: 渗漏悖论 ==================== -->
+<section class="section" id="m7" data-mode="v1 v2b">
+  <div class="section-tag b">Module B-3 · 约 3.5 min · <span class="time">03:30</span></div>
+  <h2>渗漏悖论：血管内干旱 vs 组织间隙洪涝</h2>
+  <p class="lede">
+    同一个病人，血管内"缺水"和组织间隙"发洪水"并存。盲目利尿是加重"缺水"；盲目补液是加重"洪水"。
+  </p>
+
+  <p>
+    情境 A 的液体进入体内后，<strong>白蛋白渗漏到组织间隙</strong>（CPB 炎症破坏内皮糖萼），血浆胶体渗透压下降，水分随之外移到肺间质。形成吊诡画面：<strong>体重增加 5 公斤，但血管内有效循环容量依然不足</strong>。
+  </p>
+
+  <div class="paradox-viz">
+    <svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+      <text x="340" y="24" text-anchor="middle" font-family="Source Serif 4" font-size="14" font-style="italic" fill="#555">两个间隙 · 同一病人 · 相反的水平衡</text>
+
+      <g>
+        <rect x="60" y="60" width="230" height="180" fill="none" stroke="#2a3967" stroke-width="2" rx="4"/>
+        <text x="175" y="50" text-anchor="middle" font-family="Source Sans 3" font-size="12" font-weight="700" fill="#2a3967">血管内 · INTRAVASCULAR</text>
+        <rect x="62" y="195" width="226" height="43" fill="#2a3967" opacity="0.2"/>
+        <line x1="62" y1="195" x2="288" y2="195" stroke="#2a3967" stroke-width="1.5" stroke-dasharray="2,2"/>
+        <path d="M 62,195 Q 75,190 90,195 T 120,195 T 150,195 T 180,195 T 210,195 T 240,195 T 270,195 L 288,195"
+              fill="none" stroke="#2a3967" stroke-width="1.5"/>
+        <text x="175" y="225" text-anchor="middle" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#fff">容量不足 ↓</text>
+        <text x="175" y="165" text-anchor="middle" font-family="Source Sans 3" font-size="24" fill="#c41230">☓</text>
+        <text x="175" y="130" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#888">MAP 低、无尿</text>
+      </g>
+
+      <g>
+        <path d="M 295,130 L 395,130" stroke="#c41230" stroke-width="2" marker-end="url(#arr-red)" stroke-dasharray="5,3"/>
+        <text x="345" y="124" text-anchor="middle" font-family="Source Sans 3" font-size="10" font-weight="600" fill="#c41230">白蛋白渗漏</text>
+        <text x="345" y="148" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#c41230">→ 胶体渗透压 ↓</text>
+      </g>
+
+      <g>
+        <rect x="400" y="60" width="230" height="180" fill="none" stroke="#c41230" stroke-width="2" rx="4"/>
+        <text x="515" y="50" text-anchor="middle" font-family="Source Sans 3" font-size="12" font-weight="700" fill="#c41230">组织间隙 · INTERSTITIAL</text>
+        <rect x="402" y="85" width="226" height="153" fill="#c41230" opacity="0.25"/>
+        <path d="M 402,85 Q 415,80 430,85 T 460,85 T 490,85 T 520,85 T 550,85 T 580,85 T 610,85 L 628,85"
+              fill="none" stroke="#c41230" stroke-width="1.5"/>
+        <text x="515" y="170" text-anchor="middle" font-family="Source Sans 3" font-size="11" font-weight="600" fill="#c41230">水潴留 ↑↑</text>
+        <text x="515" y="200" text-anchor="middle" font-family="Source Sans 3" font-size="10" fill="#888">肺水肿、体重 ↑</text>
+      </g>
+
+      <defs>
+        <marker id="arr-red" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <polygon points="0 0, 6 4, 0 8" fill="#c41230"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="callout warn">
+    <div class="tag">Three-Step Sequence · 三步阶梯</div>
+    <p>
+      <strong>Step 1 · 拉水 (Pull)</strong>：先用 20% 或 25% 高渗白蛋白 50–100 ml，提高胶体渗透压把间质水拉回血管<br>
+      <strong>Step 2 · 排水 (Push)</strong>：血管内容量回升后，呋塞米 20–40 mg IV 或持续泵入<br>
+      <strong>Step 3 · 截断 (Replace)</strong>：药物利尿失败、高钾、右心衰加重 → 启动 <strong>CRRT</strong>
+    </p>
+  </div>
+
+  <p>
+    本例第二阶段已满足 <strong>CRRT 硬指征</strong>：严重右心衰导致的肾静脉高压 + 药物利尿无效 + 高钾 + 无尿。CRRT 的价值不只是"替代肾脏"，更重要的是<strong>精准除水降低 CVP</strong>——直接给右心室和肾脏双重减压。这正是"截断"恶性循环的精髓。
+  </p>
+</section>
+
+<!-- ==================== 自测 ==================== -->
+<section class="quiz-section" id="quiz">
+  <h2 style="margin-bottom:12px;font-size:26px">自测 · 8 道题 · 6 题通过</h2>
+  <p class="quiz-intro">前 4 题对应情境 A，后 4 题对应情境 B。每题只有一个<strong>最佳</strong>答案。得分 ≥ 6/8 解锁现场模拟资格。</p>
+
+  <div id="quizContainer"></div>
+
+  <div class="quiz-submit-wrap">
+    <div class="quiz-progress">已作答 <b id="answered">0</b> / <span id="answeredTotal">8</span></div>
+    <button class="submit-btn" id="submitBtn" disabled>提交并查看结果</button>
+  </div>
+
+  <div class="result" id="result">
+    <div class="result-score" id="resultScore">—</div>
+    <div class="result-msg" id="resultMsg"></div>
+    <div class="result-cta" id="resultCta"></div>
+  </div>
+</section>
+<!-- ==================== 课后思考题 · v2a 模式专属 ==================== -->
+<section class="section" id="post-think" data-mode="v2a" style="background:linear-gradient(180deg,#fff 0%,#fff8e7 100%);border-top:4px solid #b8860b;margin-top:30px">
+  <div class="section-tag" style="background:#b8860b;color:#fff">★ 课后思考 · 1-2 周临床观察期</div>
+  <h2>本次课结束后，请带走这个问题</h2>
+  <p class="lede">
+    在第二次课（约 1-2 周后）之前，你将回到 ICU 工作。这段时间里，请把下面的问题<strong>带在脑子里</strong>，去观察真实的心外科术后病人。
+  </p>
+
+  <div class="callout warn">
+    <div class="tag">▸ 教员的提问（请在脑中反复琢磨）</div>
+    <p style="font-style:italic;font-size:15px;line-height:1.7">
+      "你今天救了这位病人一命——MAP 从 54 稳到 78，大出血控制住了。<br><br>
+      但请注意：你在 2 小时里给他输了大约 <strong>4500 ml</strong> 的液体。<br><br>
+      <strong>带走一个问题回去：</strong><br>
+      如果这些液体，在 CPB 炎症引起的毛细血管渗漏背景下，大量渗到肺间质里，会发生什么？<br>
+      他的<strong>心脏、肺、肾</strong>，会出什么问题？"
+    </p>
+  </div>
+
+  <p>
+    <strong>不要急着查答案</strong>。这个问题没有标准答案，也没有"正确"和"错误"——它是一个让你<strong>用临床观察去印证假设</strong>的训练。
+  </p>
+
+  <p>
+    在第二次课开始前，你会收到一份新的学习材料（M1-B 链接），那时再来对照你这 1-2 周的观察。
+  </p>
+</section>
+
+
+<!-- 参考文献 -->
+<section class="refs" id="refs">
+  <h3>References · 参考文献</h3>
+  <ol>
+    <li>
+      Pérez-Vela JL, Jiménez-Rivera JJ, Alcalá-Llorente MA, et al. <em>Low cardiac output syndrome in the postoperative period of cardiac surgery. Profile, differences in clinical course and prognosis.</em> Med Intensiva. 2018;42(3):159–167.
+    </li>
+    <li>
+      张海涛, 李白翎, 曹芳芳, 等. <em>主动脉内球囊反搏心脏外科围手术期应用专家共识.</em> 中华医学杂志. 2017;97(28):2168–2175. [项目知识库内置]
+    </li>
+    <li>
+      Whitton TP, Healy WJ. <em>Review of Thromboelastography (TEG): Medical and Surgical Applications.</em> ATS Scholar. 2023.
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10725099/" target="_blank">[PMC]</a>
+    </li>
+    <li>
+      Tibi P, McClure RS, Huang J, et al. <em>STS/SCA/AmSECT/SABM Patient Blood Management Clinical Practice Guidelines.</em> Ann Thorac Surg. 2021;112(3):981–1004.
+    </li>
+    <li>
+      Görlinger K, Pérez-Ferrer A, et al. <em>TEG® 6s–Guided Algorithm for Optimizing Patient Blood Management in Cardiovascular Surgery.</em> J Cardiothorac Vasc Anesth. 2025.
+      <a href="https://www.jcvaonline.com/article/S1053-0770(25)00122-3/fulltext" target="_blank">[全文]</a>
+    </li>
+    <li>
+      Busse LW, Barker N, Petersen C. <em>Management of vasoplegic shock.</em> BJA Education. 2024.
+      <a href="https://www.bjaed.org/article/S2058-5349(24)00121-5/fulltext" target="_blank">[全文]</a>
+    </li>
+    <li>
+      Kunst G, Milojevic M, Boer C, et al. <em>2024 EACTS/EACTAIC Guidelines on patient blood management in adult cardiac surgery.</em> Eur J Cardiothorac Surg. 2025;67(5):ezae352.
+      <a href="https://academic.oup.com/ejcts/article/67/5/ezae352/7815985" target="_blank">[全文]</a>
+    </li>
+    <li>
+      Zhu J, et al. <em>Does methylene blue improve outcomes in patients with post-cardiac surgery vasoplegic syndrome?</em> Interdisc CardioVasc Thorac Surg. 2024;40(1):ivae221.
+      <a href="https://academic.oup.com/icvts/article/40/1/ivae221/7934145" target="_blank">[全文]</a>
+    </li>
+    <li>
+      Mehaffey JH, Johnston LE, Hawkins RB, et al. <em>Methylene Blue for Vasoplegic Syndrome After Cardiac Operation: Early Administration Improves Survival.</em> Ann Thorac Surg. 2017;104(1):36–41.
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5523819/" target="_blank">[PMC]</a>
+    </li>
+    <li>
+      Fattouch K, Sbraga F, Sampognaro R, et al. <em>Beneficial effects of inhaled nitric oxide in adult cardiac surgical patients.</em> Ann Thorac Surg. 2002;73(2):476–480.
+      <a href="https://www.annalsthoracicsurgery.org/article/S0003-4975(01)03398-7/fulltext" target="_blank">[全文]</a>
+    </li>
+    <li>
+      Cai J, Tan L, Lai J, et al. <em>Inhaled nitric oxide and postoperative outcomes in cardiac surgery with cardiopulmonary bypass: A systematic review and meta-analysis.</em> Heart Lung. 2024.
+      <a href="https://www.sciencedirect.com/science/article/abs/pii/S1089860324000417" target="_blank">[摘要]</a>
+    </li>
+  </ol>
+</section>
+
+</main>
+
+<footer class="foot">
+  <b>ICU Simulation Curriculum</b> · Pre-Class Module · Scenarios A &amp; B · 本模块为教学用途，临床决策须结合患者具体情况与当地指南<br>
+  <span style="color:#666">Based on INACSL SOBP 2021 · ASPE SOBP 2017 · 2021 住院医师规范化培训教学活动指南</span>
+</footer>
+
+<script>
+// 进度 & 导航
+const sections = document.querySelectorAll('section.section, section.quiz-section, .scenario-banner');
+const navLinks = document.querySelectorAll('.nav-row a');
+const progress = document.getElementById('progress');
+
+window.addEventListener('scroll',()=>{
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  progress.style.width = Math.min(100,pct) + '%';
+  let current = 'sc-a';
+  sections.forEach(s => {
+    const rect = s.getBoundingClientRect();
+    if(rect.top < 180) current = s.id;
+  });
+  navLinks.forEach(a=>{
+    a.classList.toggle('active', a.getAttribute('href') === '#'+current);
+  });
+});
+
+// ==================== IABP 相位说明切换 ====================
+const phaseDesc = document.getElementById('phaseDesc');
+
+const phases = {
+  diastole: '<b>Step 2 · 舒张期充气</b>：主动脉瓣关闭瞬间，气囊充入约 40 ml 氦气（物理"顶"血），瞬时提高主动脉根部压力。<b>冠脉血流 90% 发生在舒张期</b>，所以这个动作直接增加缺血心肌的氧供——对 LCOS 病人的顿抑心肌是"精确输氧"。',
+  systole:  '<b>Step 3 · 收缩前抽气</b>：在主动脉瓣即将开启的瞬间气囊快速抽气，产生"真空效应"降低主动脉内压——左心室在开启时"迎面的阻力"减小，<b>射血阻抗下降 15-20%</b>。心脏以更少的力气泵出更多的血，<b>心肌氧耗同时下降 25%</b>——这就是"省力"。',
+  overview: '<b>整体视角</b>：IABP 以 R 波为触发源完成"充气-抽气"的精确时序动作。临床通常设置 <b>1:1 反搏</b>（每心跳辅助 1 次）；当心率过快或严重心律失常时可调为 1:2、1:3。注意：房颤下气囊可能反搏不协调，需要切换到压力触发模式；心率 &gt; 130 bpm 或严重 VT/VF 时 IABP 效果下降。'
+};
+
+function setPhase(name){
+  phaseDesc.innerHTML = phases[name];
+}
+
+document.querySelectorAll('.phase-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.phase-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    setPhase(btn.dataset.phase);
+  });
+});
+
+// ==================== B1 心脏切换 ====================
+const lv = document.getElementById('lv');
+const rv = document.getElementById('rv');
+const septum = document.getElementById('septum');
+const scData = document.getElementById('scData');
+
+const scenarios = {
+  normal: {
+    lv:{cx:240,rx:60,ry:90,op:0.7},
+    rv:{cx:130,rx:60,ry:90,op:0.7},
+    septum:'M 190,80 Q 190,170 190,260',
+    data:`<span class="key">RV 大小</span>  正常
+<span class="key">室间隔</span>    居中
+<span class="key">PAWP</span>      14 mmHg
+<span class="key">CVP</span>       14 mmHg
+<span class="key">CI</span>        2.2 L/min/m²
+<span class="key">尿量</span>      恢复中`
+  },
+  rv: {
+    lv:{cx:260,rx:35,ry:60,op:0.5},
+    rv:{cx:120,rx:85,ry:100,op:0.9},
+    septum:'M 190,80 Q 230,170 190,260',
+    data:`<span class="key">RV 大小</span>  <span class="warn">扩张 ↑↑</span>
+<span class="key">室间隔</span>    <span class="warn">左移 · "D 字征"</span>
+<span class="key">PAWP</span>      <span class="warn">低充盈</span>
+<span class="key">CVP</span>       <span class="warn">24 mmHg ↑↑</span>
+<span class="key">CI</span>        <span class="warn">再次下降</span>
+<span class="key">尿量</span>      <span class="warn">无尿</span>`
+  },
+  ino: {
+    lv:{cx:245,rx:55,ry:85,op:0.65},
+    rv:{cx:135,rx:65,ry:92,op:0.75},
+    septum:'M 190,80 Q 195,170 190,260',
+    data:`<span class="key">RV 大小</span>  改善
+<span class="key">室间隔</span>    <span style="color:#006666;font-weight:600">回归居中</span>
+<span class="key">PAWP</span>      <span style="color:#006666;font-weight:600">14 mmHg</span>
+<span class="key">CVP</span>       <span style="color:#006666;font-weight:600">12 mmHg</span>
+<span class="key">CI</span>        <span style="color:#006666;font-weight:600">2.6 L/min/m²</span>
+<span class="key">尿量</span>      <span style="color:#006666;font-weight:600">CRRT 控制</span>`
+  }
+};
+
+document.querySelectorAll('.scenario-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.scenario-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const sc = scenarios[btn.dataset.sc];
+    lv.setAttribute('cx',sc.lv.cx);
+    lv.setAttribute('rx',sc.lv.rx);
+    lv.setAttribute('ry',sc.lv.ry);
+    lv.setAttribute('opacity',sc.lv.op);
+    document.getElementById('lvLabel').setAttribute('x',sc.lv.cx);
+    rv.setAttribute('cx',sc.rv.cx);
+    rv.setAttribute('rx',sc.rv.rx);
+    rv.setAttribute('ry',sc.rv.ry);
+    rv.setAttribute('opacity',sc.rv.op);
+    document.getElementById('rvLabel').setAttribute('x',sc.rv.cx);
+    septum.setAttribute('d',sc.septum);
+    scData.innerHTML = sc.data;
+  });
+});
+
+// ==================== TEG 交互 ====================
+const rSlider = document.getElementById('rSlider');
+const maSlider = document.getElementById('maSlider');
+const lySlider = document.getElementById('lySlider');
+
+function drawTEG(){
+  const r = parseFloat(rSlider.value);
+  const ma = parseFloat(maSlider.value);
+  const ly = parseFloat(lySlider.value);
+
+  document.getElementById('rVal').textContent = r + ' min';
+  document.getElementById('maVal').textContent = ma + ' mm';
+  document.getElementById('lyVal').textContent = ly + ' %';
+
+  const startX = 40, endX = 540;
+  const rX = startX + 50 + (r/20)*200;
+  const maEndX = Math.min(rX + 150, endX);
+  const maPeak = (ma/75) * 85;
+
+  let upPath = `M ${startX},110 L ${rX},110 `;
+  const points = 20;
+  for(let i=0;i<=points;i++){
+    const t = i/points;
+    const x = rX + t*(maEndX-rX);
+    const y = 110 - maPeak*(1-Math.exp(-t*4));
+    upPath += `L ${x.toFixed(1)},${y.toFixed(1)} `;
+  }
+  const lysisPts = 12;
+  const maX = maEndX;
+  const maY = 110 - maPeak;
+  const lysisEnd = Math.min(maX + 30, endX);
+  for(let i=1;i<=lysisPts;i++){
+    const t = i/lysisPts;
+    const x = maX + t*(lysisEnd-maX);
+    const y = maY + (maPeak*ly/100)*t;
+    upPath += `L ${x.toFixed(1)},${y.toFixed(1)} `;
+  }
+
+  let downPath = `M ${startX},110 L ${rX},110 `;
+  for(let i=0;i<=points;i++){
+    const t = i/points;
+    const x = rX + t*(maEndX-rX);
+    const y = 110 + maPeak*(1-Math.exp(-t*4));
+    downPath += `L ${x.toFixed(1)},${y.toFixed(1)} `;
+  }
+  for(let i=1;i<=lysisPts;i++){
+    const t = i/lysisPts;
+    const x = maX + t*(lysisEnd-maX);
+    const yMirror = 110 + maPeak - (maPeak*ly/100)*t;
+    downPath += `L ${x.toFixed(1)},${yMirror.toFixed(1)} `;
+  }
+
+  document.getElementById('tegUp').setAttribute('d',upPath);
+  document.getElementById('tegDown').setAttribute('d',downPath);
+  const fillPath = upPath + ` L ${lysisEnd},110 Z`;
+  document.getElementById('tegFill').setAttribute('d',fillPath);
+
+  document.getElementById('rLine').setAttribute('x1',rX);
+  document.getElementById('rLine').setAttribute('x2',rX);
+  document.getElementById('rLabel').setAttribute('x',rX+2);
+  document.getElementById('maLine').setAttribute('x1',maX);
+  document.getElementById('maLine').setAttribute('x2',maX);
+  document.getElementById('maLine').setAttribute('y1',maY);
+  document.getElementById('maLine').setAttribute('y2',110 + maPeak);
+  document.getElementById('maLabel').setAttribute('x',maX+6);
+  document.getElementById('maLabel').setAttribute('y',110);
+
+  let txt = '';
+  const issues = [];
+  if(r > 10) issues.push({type:'R',msg:`R = ${r} min 延长 → 凝血因子缺乏`,rx:'FFP 10–15 ml/kg'});
+  if(ma < 50) issues.push({type:'MA',msg:`MA = ${ma} mm 降低 → 血小板/纤维蛋白原不足`,rx:ma<45?'血小板 ± 冷沉淀':'血小板'});
+  if(ly > 3) issues.push({type:'LY30',msg:`LY30 = ${ly}% 升高 → 纤溶亢进`,rx:'氨甲环酸 10–15 mg/kg'});
+  if(issues.length === 0){
+    txt = '<span style="color:#006666;font-weight:600">✓ 各参数正常，无需特异性处理。</span>';
+  } else {
+    txt = issues.map(i => `<div style="margin-bottom:6px"><strong>[${i.type}]</strong> ${i.msg} <span class="rx">→ ${i.rx}</span></div>`).join('');
+  }
+  document.getElementById('tegText').innerHTML = txt;
+}
+rSlider.addEventListener('input',drawTEG);
+maSlider.addEventListener('input',drawTEG);
+lySlider.addEventListener('input',drawTEG);
+drawTEG();
+
+// ==================== 自测 ====================
+const questions = [
+  // —— A 情境 ——
+  {
+    scenario:'A',
+    q: `情境 A：CI <span class="data">1.7 L/min/m²</span>、SvO2 <span class="data">55%</span>、POCUS 见 LV 整体收缩弱，CVP 14、PAWP 16 mmHg。核心病理最符合？`,
+    options: ['血管麻痹综合征','急性右心衰','低心排综合征 (LCOS) 合并心肌顿抑','单纯的容量不足'],
+    correct: 2,
+    exp: '<span class="correct-label">C 正确。</span>CI < 2.0 + SvO2 < 60% + LV 收缩弱 = LCOS 三要素。CVP 和 PAWP 接近（无跨肺压力解离）排除了右心衰；高剂量去甲下血压仍低有血管麻痹成分，但核心是泵功能问题。CPB 220 分钟导致的心肌顿抑是最常见病因。'
+  },
+  {
+    scenario:'A',
+    q: '对这位重度休克合并 LCOS 的患者使用米力农，下列哪项最关键？',
+    options: ['给予标准负荷量 50 μg/kg 10 min 快推','省略负荷剂量，直接以 0.375 μg/kg/min 维持泵入','联合使用肾上腺素以对冲米力农的降压作用','米力农对 LCOS 无效，应换为多巴酚丁胺'],
+    correct: 1,
+    exp: '<span class="correct-label">B 正确。</span>对于血流动力学极度不稳定的重度休克患者必须<strong>省略负荷剂量</strong>——否则负荷剂量诱导的血管扩张会瞬间诱发致死性低血压。米力农是 LCOS 合并高儿茶酚胺用量的首选"inodilator"，但使用细节决定生死。'
+  },
+  {
+    scenario:'A',
+    q: '这位病人 MAP 54 mmHg、乳酸 4.8、米力农已泵入。上级医生建议立即置入 IABP。作为住院医，你认为此刻选择 IABP 最核心的临床理由是？',
+    options: [
+      '快速升高平均动脉压，替代升压药',
+      '心肌顿抑状态下，舒张期增压改善冠脉灌注、收缩期减压降低心肌氧耗，在不增加心率的前提下打破"缺血→收缩差→更缺血"的恶性循环',
+      'IABP 可以直接提升心排量，比米力农更强效',
+      '体外循环后常规上 IABP，是标准化流程'
+    ],
+    correct: 1,
+    exp: '<span class="correct-label">B 正确。</span>IABP 的价值不在于单纯"升压"——<strong>舒张期充气</strong>使主动脉根部压升高 30-40%，直接增加冠脉灌注压；<strong>收缩期放气</strong>降低后负荷约 20%，减少心肌氧耗 25%。对心肌顿抑的病人，这个"帮心脏省力 + 给心脏供血"的双向作用是打破缺血恶性循环的关键，而非单纯的血压支撑。'
+  },
+  {
+    scenario:'A',
+    q: 'TEG 报告 <span class="data">R = 15 min</span>、<span class="data">MA = 38 mm</span>、<span class="data">LY30 = 12%</span>。输血"先手"最合理的是？',
+    options: ['紧急输注 RBC 2 U','静推氨甲环酸 + 输 FFP 与血小板','单纯输血小板','再次查凝血功能后决定'],
+    correct: 1,
+    exp: '<span class="correct-label">B 正确。</span>LY30 > 3% 提示纤溶亢进，必须先"关水龙头" (TXA)——否则输入的血制品会被溶解。随后针对 R 延长补 FFP、MA 低补血小板。三个短板对应三个靶向干预。'
+  },
+  // —— B 情境 ——
+  {
+    scenario:'B',
+    q: `情境 B：情境 A 干预 4 小时后，气道峰压升至 35、CVP 从 14 升至 <span class="data">24 mmHg</span>、POCUS 见 RV 扩张伴 D 字征，尿量为零、血钾升高。机制链条中<strong>最可能的起点</strong>是？`,
+    options: [
+      '情境 A 大量液体输入 → 肺渗出 → 气道高压 → PVR 骤升 → 急性右心衰',
+      '新发冠脉事件导致右心梗死',
+      '感染性休克进展',
+      'PE 肺栓塞'
+    ],
+    correct: 0,
+    exp: '<span class="correct-label">A 正确。</span>这是本课程的核心教学点——情境 A 救命的液体本身种下了情境 B 的病因。"大量液体 + SIRS 渗漏 → 肺水肿 → 气道高压 + 低氧 → PVR 骤升 → RV 急性衰竭 → 肾静脉高压 → AKI"，这条多米诺链条是真实 ICU 的本质。'
+  },
+  {
+    scenario:'B',
+    q: '此时已置入 IABP、血压 90/60 mmHg (MAP 70)，对急性右心衰合并肺水肿的首选治疗？',
+    options: [
+      '快速补液扩容 500 ml',
+      '大剂量呋塞米 80 mg IV 推注',
+      '吸入一氧化氮 (iNO) 20 ppm',
+      '立即升级到 VA-ECMO'
+    ],
+    correct: 2,
+    exp: '<span class="correct-label">C 正确。</span>iNO 是右心衰合并肺高压的首选，因其选择性扩张肺血管、不降低体循环 MAP（此时 MAP 刚稳定住，不能再破坏）。补液会加重右心扩张；单用利尿剂在血管内已经干旱的情况下会诱发低血压；ECMO 暂无指征（循环暂稳定）。'
+  },
+  {
+    scenario:'B',
+    q: 'iNO 使用 36 小时后病情稳定，准备撤机。最合理的做法是？',
+    options: [
+      '直接停用，观察 4 小时',
+      '一次减半：20→10 ppm，稳定 30 分钟后停',
+      '阶梯式减量：20→10→5→2→1 ppm，每档观察 4-6 小时；在 <5 ppm 时桥接西地那非',
+      'iNO 可以随时安全停用，无需撤机流程'
+    ],
+    correct: 2,
+    exp: '<span class="correct-label">C 正确。</span>iNO 超过 24 小时使用会产生肺血管"依赖性"，骤停会导致反跳性肺动脉高压，瞬间把右心再次推向崩溃。规范做法是阶梯减量，每档观察 4-6 小时稳定性，并在低剂量时桥接 PDE5 抑制剂或吸入前列环素。这是规培医师的"隐性考点"。'
+  },
+  {
+    scenario:'B',
+    q: '此时病人 MAP 72 mmHg、CVP 24 mmHg、持续无尿已 4 小时、血钾 6.2 mmol/L。请计算肾灌注压，并选择最能反映当前肾损伤机制及处理方向的选项：',
+    options: [
+      '肾灌注压 = MAP 72 mmHg，灌注尚可，继续加大呋塞米剂量',
+      '肾灌注压 = MAP − CVP = 72 − 24 = 48 mmHg，肾静脉高压是主因；白蛋白 + 呋塞米已无效，启动 CRRT 精准除水降低 CVP',
+      '肾灌注压不需要计算，直接补液扩容改善肾血流',
+      '无尿的主要原因是心排量不足，应先加大米力农剂量'
+    ],
+    correct: 1,
+    exp: '<span class="correct-label">B 正确。</span>肾灌注压 = MAP − CVP = 72 − 24 = <strong>48 mmHg</strong>（正常 > 60 mmHg）。本例 AKI 的核心机制不是"肾脏缺血"，而是<strong>肾静脉高压</strong>——CVP 24 mmHg 导致肾静脉回流受阻，肾小球滤过压骤降。此时单纯加大利尿剂只会让血管内更"干旱"，加重低血压；补液则会进一步抬高 CVP。唯有 CRRT 精准除水、把 CVP 降下来，才能从根本上解除肾脏的"静脉压迫"。'
+  }
+];
+
+const container = document.getElementById('quizContainer');
+const userAnswers = {};
+
+function renderPostQuiz(){
+  if(!container) return;
+  container.innerHTML = '';
+  Object.keys(userAnswers).forEach(k => delete userAnswers[k]);
+  const activeQs = getActiveQuestions();
+  activeQs.forEach((q,idx)=>{
+    const div = document.createElement('div');
+    div.className = 'question ' + (q.scenario === 'A' ? 'a-q' : 'b-q');
+    div.innerHTML = `
+      <div class="q-num ${q.scenario === 'A' ? 'a-num' : 'b-num'}">
+        <span class="q-badge">情境 ${q.scenario}</span>
+        QUESTION ${String(idx+1).padStart(2,'0')}
+      </div>
+      <div class="q-stem">${q.q}</div>
+      <div class="q-options">
+        ${q.options.map((opt,i)=>`
+          <button class="q-opt" data-q="${idx}" data-i="${i}">
+            <span class="letter">${String.fromCharCode(65+i)}</span>
+            <span>${opt}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="q-feedback" id="fb-${idx}"></div>
+    `;
+    container.appendChild(div);
+  });
+
+  // 重新绑定选项点击事件
+  document.querySelectorAll('.q-opt').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const qIdx = +btn.dataset.q;
+      const oIdx = +btn.dataset.i;
+      document.querySelectorAll(`.q-opt[data-q="${qIdx}"]`).forEach(b=>b.classList.remove('sel'));
+      btn.classList.add('sel');
+      userAnswers[qIdx] = oIdx;
+      document.getElementById('answered').textContent = Object.keys(userAnswers).length;
+      document.getElementById('submitBtn').disabled = Object.keys(userAnswers).length !== (window.__currentQuizCount || 8);
+    });
+  });
+}
+
+// 在模式应用后渲染后测
+window.addEventListener('DOMContentLoaded', ()=>{
+  setTimeout(renderPostQuiz, 110); // applyMode 后 + renderPretest 后
+});
+
+document.getElementById('submitBtn').addEventListener('click',()=>{
+  let score = 0;
+  const activeQs = getActiveQuestions();
+  activeQs.forEach((q,idx)=>{
+    const ua = userAnswers[idx];
+    const opts = document.querySelectorAll(`.q-opt[data-q="${idx}"]`);
+    opts.forEach((o,i)=>{
+      o.disabled = true;
+      o.style.cursor = 'default';
+      if(i === q.correct) o.classList.add('correct');
+      else if(i === ua) o.classList.add('wrong');
+    });
+    const fb = document.getElementById(`fb-${idx}`);
+    fb.innerHTML = q.exp;
+    fb.classList.add('show');
+    if(ua === q.correct) score++;
+  });
+
+  const result = document.getElementById('result');
+  const rs = document.getElementById('resultScore');
+  const rm = document.getElementById('resultMsg');
+  const rc = document.getElementById('resultCta');
+  const total = (window.__currentQuizCount || 8);
+  rs.textContent = score + ' / ' + total;
+  const passScore = (window.__currentPassScore || 6);
+  if(score >= passScore){
+    result.classList.add('show','pass');
+    rm.innerHTML = '<strong style="color:#006666">通过 · 已解锁现场模拟资格</strong>';
+    rc.textContent = '请将本页截图发送给教学秘书报到，现场模拟时携带打印的参考文献列表。';
+  } else {
+    result.classList.add('show','fail');
+    rm.innerHTML = '<strong style="color:#c41230">未通过 · 请复习错题后重做</strong>';
+    rc.textContent = '建议重点复习错题对应的模块，然后重新答题。通过本关后方可进入现场模拟环节。';
+  }
+  result.scrollIntoView({behavior:'smooth',block:'center'});
+  showPrePostCompare(score);
+  document.getElementById('submitBtn').disabled = true;
+});
+
+
+
+/* ============================================================
+   模式管理系统 · URL 参数解析 + DOM 显隐控制
+============================================================ */
+const MODE_CONFIG = {
+  v1: {
+    name: 'A+B 完整版',
+    issueLabel: 'Pre-Class Self-Study · 课前自学模块 · 建议用时 25 分钟 · 版本 1 · A+B 连续',
+    title: '体外循环术后危象：<br>两幕戏、一个病人',
+    subtitle: '70 岁男性，风湿性心脏病二次瓣膜置换，CPB 220 分钟。你将在模拟中心连续经历两个情境——情境 A 让你打破重度休克，而你的每个抢救决策，都在为情境 B 的新危机埋下伏笔。',
+    quizCount: 8,
+    passScore: 6,
+    pretestMinutes: 5,
+    introMsg: '本次课程为完整双幕模式。本自学涵盖情境 A 和情境 B 的全部 7 个核心知识点，自测 8 题，得分 ≥ 6/8 解锁现场模拟资格。'
+  },
+  v2a: {
+    name: '仅情境 A',
+    issueLabel: 'Pre-Class Self-Study · 课前自学模块 · 建议用时 12 分钟 · 版本 2 · 第一次课（情境 A）',
+    title: '体外循环术后危象：<br>第一幕 · 破局休克',
+    subtitle: '70 岁男性，风湿性心脏病二次瓣膜置换，CPB 220 分钟，转入 ICU 4 小时。MAP 一直在掉、引流管在出鲜红、去甲已 0.8 μg/kg/min 仍撑不住——你接班，要在 35 分钟内打破"三线崩溃"的休克局面。',
+    quizCount: 4,
+    passScore: 3,
+    pretestMinutes: 3,
+    introMsg: '本次课程为版本 2 第一次课（仅情境 A）。本自学聚焦情境 A 的 4 个核心知识点，自测 4 题，得分 ≥ 3/4 解锁现场模拟资格。课程结束后会布置一道课后思考题，请带回到 1-2 周的临床观察中酝酿。'
+  },
+  v2b: {
+    name: '情境 B + 回顾',
+    issueLabel: 'Pre-Class Self-Study · 课前自学模块 · 建议用时 15 分钟 · 版本 2 · 第二次课（情境 B + A 期回顾）',
+    title: '体外循环术后危象：<br>第二幕 · 保护右心',
+    subtitle: '上次课，你救了这位 70 岁的二次瓣膜置换病人——MAP 从 54 稳到 78，大出血控制住了。<strong>但你输了 4500 ml 液体。</strong>现在是术后 8 小时，气道压在涨、CVP 在涨、尿量在掉。你回到病房接班——上次课布置的思考题，今天要变成现实。',
+    quizCount: 4,
+    passScore: 3,
+    pretestMinutes: 3,
+    introMsg: '本次课程为版本 2 第二次课（情境 B + A 期回顾）。本自学先回顾你 1-2 周前在情境 A 做的决策，再聚焦情境 B 的 3 个核心知识点。自测 4 题，得分 ≥ 3/4 解锁现场模拟资格。'
+  }
+};
+
+let currentMode = 'v1'; // 默认
+
+function parseMode(){
+  // 支持两种格式: ?mode=v1 和 #mode=v1
+  const url = new URL(window.location.href);
+  const fromQuery = url.searchParams.get('mode');
+  const fromHash = (window.location.hash.match(/mode=([^&]+)/) || [])[1];
+  const mode = (fromQuery || fromHash || 'v1').toLowerCase();
+  return MODE_CONFIG[mode] ? mode : 'v1';
+}
+
+function applyMode(mode){
+  currentMode = mode;
+  const cfg = MODE_CONFIG[mode];
+
+  // 1. 文案更新
+  const issueEl = document.getElementById('issueLabel');
+  if(issueEl) issueEl.textContent = cfg.issueLabel;
+  const titleEl = document.getElementById('mainTitle');
+  if(titleEl) titleEl.innerHTML = cfg.title;
+  const subEl = document.getElementById('mainSubtitle');
+  if(subEl) subEl.innerHTML = cfg.subtitle;
+
+  // 2. DOM 显隐控制
+  document.querySelectorAll('[data-mode]').forEach(el=>{
+    const allowedModes = el.dataset.mode.split(/\s+/);
+    el.style.display = allowedModes.includes(mode) ? '' : 'none';
+  });
+
+  // 3. 更新模式切换器当前显示
+  const msCurrent = document.getElementById('msCurrentMode');
+  if(msCurrent) msCurrent.textContent = cfg.name;
+  document.querySelectorAll('.ms-item').forEach(item=>{
+    item.classList.toggle('current', item.dataset.target === mode);
+  });
+
+  // 4. 更新前测题目数和通过分数（如果前测页存在）
+  updatePretestForMode(mode, cfg);
+
+  // 4.5 更新后测题目数显示
+  const ansTotal = document.getElementById('answeredTotal');
+  if(ansTotal) ansTotal.textContent = cfg.quizCount;
+  // 找到自测引导段落，更新文案
+  const quizDesc = document.querySelector('#quiz .lede');
+  if(quizDesc){
+    if(mode === 'v1'){
+      quizDesc.innerHTML = '前 4 题对应情境 A，后 4 题对应情境 B。每题只有一个<strong>最佳</strong>答案。得分 ≥ 6/8 解锁现场模拟资格。';
+    } else if(mode === 'v2a'){
+      quizDesc.innerHTML = '共 4 题，对应情境 A 的核心知识点。每题只有一个<strong>最佳</strong>答案。得分 ≥ 3/4 解锁第一次模拟课资格。';
+    } else if(mode === 'v2b'){
+      quizDesc.innerHTML = '共 4 题，对应情境 B 的核心知识点。每题只有一个<strong>最佳</strong>答案。得分 ≥ 3/4 解锁第二次模拟课资格。';
+    }
+  }
+
+  // 5. 更新文档 title
+  document.title = `课前自学 · ${cfg.name} · ICU 专培模拟课程`;
+}
+
+function updatePretestForMode(mode, cfg){
+  // 前测题数文案更新
+  const ans = document.getElementById('ptAnswered');
+  if(!ans) return;
+  // 找到 "已作答 X / 8 题" 中的总数
+  const wrap = ans.closest('.pretest-answered');
+  if(wrap){
+    wrap.innerHTML = `已作答 <b id="ptAnswered">0</b> / ${cfg.quizCount} 题`;
+  }
+  // 顶部 badge
+  const badge = document.querySelector('.pretest-topbar .pt-badge');
+  if(badge) badge.textContent = `Pre-Test · 共 ${cfg.quizCount} 题`;
+  // 前测引导段落与规则条
+  const p1 = document.getElementById('ptIntroP1');
+  if(p1) p1.innerHTML = `以下 ${cfg.quizCount} 道题覆盖本次课的核心知识点。<strong>请在不参考任何资料的情况下</strong>独立作答，系统会记录你的前测分数。`;
+  const p2 = document.getElementById('ptIntroP2');
+  if(p2) p2.innerHTML = `完成后，你将正式进入课前自学模块。自学结束后用同样的 ${cfg.quizCount} 道题再测一次，系统会自动显示你的<strong>学习前后对比</strong>。`;
+  const ruleCount = document.getElementById('ptRuleCount');
+  if(ruleCount) ruleCount.innerHTML = `<b>${cfg.quizCount}</b> 道题`;
+  const ruleTime = document.getElementById('ptRuleTime');
+  if(ruleTime) ruleTime.innerHTML = `<b>约 ${cfg.pretestMinutes} 分钟</b>`;
+  // 模态结果显示分数也要变
+  // 这里通过 window 暴露当前题数供 submitPretest/submitQuiz 读取
+  window.__currentQuizCount = cfg.quizCount;
+  window.__currentPassScore = cfg.passScore;
+}
+
+function toggleModeMenu(){
+  const menu = document.getElementById('msMenu');
+  if(menu) menu.classList.toggle('show');
+}
+
+// 点击外部关闭模式菜单
+document.addEventListener('click', e=>{
+  if(!e.target.closest('.mode-switcher')){
+    const menu = document.getElementById('msMenu');
+    if(menu) menu.classList.remove('show');
+  }
+});
+
+// 在 questions 数组定义后过滤当前模式的题目
+function getActiveQuestions(){
+  if(currentMode === 'v2a'){
+    return questions.filter(q => q.scenario === 'A');
+  } else if(currentMode === 'v2b'){
+    return questions.filter(q => q.scenario === 'B');
+  }
+  return questions; // v1 全部
+}
+
+// 初始化（在 DOMContentLoaded 后立即执行）
+window.addEventListener('DOMContentLoaded', ()=>{
+  const mode = parseMode();
+  applyMode(mode);
+});
+
+
+/* ============================================================
+   前测逻辑
+============================================================ */
+let pretestAnswers = {};
+let pretestScore = null;
+
+// 渲染前测题目
+function renderPretest(){
+  const wrap = document.getElementById('ptQuestions');
+  wrap.innerHTML = ''; // 清空，支持模式切换重渲染
+  const keys = ['A','B','C','D'];
+  const activeQs = getActiveQuestions();
+  activeQs.forEach((q, idx) => {
+    const div = document.createElement('div');
+    div.className = 'pretest-q';
+    div.innerHTML = `
+      <div class="pq-num">题 ${idx+1} / ${activeQs.length} · ${q.scenario === 'A' ? '情境 A' : '情境 B'}</div>
+      <div class="pq-text">${q.q}</div>
+      <div class="pq-opts" id="ptopts-${idx}">
+        ${q.options.map((opt, oi) => `
+          <button class="pq-opt" data-q="${idx}" data-v="${oi}" onclick="pickPretest(${idx},${oi},this)">
+            <span class="pq-key">${keys[oi]}</span><span>${opt}</span>
+          </button>`).join('')}
+      </div>`;
+    wrap.appendChild(div);
+  });
+}
+// 在模式应用后渲染前测题
+window.addEventListener('DOMContentLoaded', ()=>{
+  setTimeout(renderPretest, 100); // 等 applyMode 执行完后
+});
+
+function pickPretest(q, v, el){
+  document.querySelectorAll(`#ptopts-${q} .pq-opt`).forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');
+  pretestAnswers[q] = v;
+  const count = Object.keys(pretestAnswers).length;
+  document.getElementById('ptAnswered').textContent = count;
+  const required = window.__currentQuizCount || 8;
+  document.getElementById('ptSubmitBtn').disabled = count < required;
+}
+
+function submitPretest(){
+  let score = 0;
+  const activeQs = getActiveQuestions();
+  activeQs.forEach((q, idx) => {
+    if(pretestAnswers[idx] === q.correct) score++;
+  });
+  pretestScore = score;
+
+  const total = activeQs.length;
+  // 4 级评级根据百分比判定
+  const pct = score / total;
+  const tier = pct < 0.33 ? 0 : pct < 0.55 ? 1 : pct < 0.85 ? 2 : 3;
+  const tierLabels = ['初学起点', '基础阶段', '良好基础', '优秀基础'];
+  const tierClasses = ['t1', 't2', 't3', 't4'];
+  const msgs = [
+    '没关系，这正是你来学习的原因。完成自学后你会发现答案都清晰起来了。',
+    '有些基础，但核心知识点还有空缺。自学模块会帮你补齐。',
+    '不错的基础！自学模块会帮你把对的地方记得更牢，把错的地方弄清楚。',
+    '相当扎实的基础！自学模块会为你提供更深入的临床推理框架。',
+  ];
+
+  document.getElementById('pmScore').textContent = score + ' / ' + total;
+  document.getElementById('pmMsg').textContent = msgs[tier];
+  const tagEl = document.getElementById('pmTierTag');
+  tagEl.textContent = tierLabels[tier];
+  tagEl.className = 'pm-tier-tag ' + tierClasses[tier];
+
+  document.getElementById('ptModalOverlay').classList.add('show');
+
+  setTimeout(()=>{
+    document.getElementById('pmScoreBar').style.width = (pct*100) + '%';
+  }, 100);
+}
+
+function startMainContent(){
+  document.getElementById('ptModalOverlay').classList.remove('show');
+  // 等模态淡出后再隐藏前测页
+  setTimeout(()=>{
+    document.getElementById('pretest-gate').style.display = 'none';
+    document.body.style.overflow = '';
+    window.scrollTo(0, 0);
+  }, 250);
+}
+
+/* 前后对比显示 */
+function showPrePostCompare(postScore){
+  if(pretestScore === null) return;
+  const el = document.getElementById('prepostCompare');
+  document.getElementById('ppPre').textContent = pretestScore + '/8';
+  document.getElementById('ppPost').textContent = postScore + '/8';
+  const gain = postScore - pretestScore;
+  document.getElementById('ppGain').textContent = (gain >= 0 ? '+' : '') + gain;
+  el.classList.add('show');
+}
+
+// 阻止主页面滚动（前测期间）
+document.body.style.overflow = 'hidden';
+
+// 导航平滑
+document.querySelectorAll('.nav-row a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+
+
+</body>
+</html>
