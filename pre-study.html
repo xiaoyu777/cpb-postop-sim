@@ -1029,10 +1029,12 @@ blockquote.quote cite{
       <div class="timeline-label">Case Timeline · 病例时间轴</div>
       <div class="timeline-track">
         <div class="timeline-nodes">
-          <div class="tl-node"><div class="tl-dot"></div><div class="tl-time">T 0</div><div class="tl-label">转入 ICU</div></div>
+          <!-- T 的基准 = 转入 ICU（术毕后 1 小时）。所有模块的 T+ 时刻都以此为准，
+               「术后 N 小时」= T + 1。各节点时刻须与 M2 的 clockMap 一致。 -->
+          <div class="tl-node"><div class="tl-dot"></div><div class="tl-time">T 0</div><div class="tl-label">转入 ICU<span style="display:block;font-weight:400;color:var(--ink-lighter);font-size:9.5px">术毕后 1h</span></div></div>
           <div class="tl-node"><div class="tl-dot a"></div><div class="tl-time">T+4h</div><div class="tl-label"><b>情境 A</b>休克告急</div></div>
-          <div class="tl-node"><div class="tl-dot a"></div><div class="tl-time">T+6h</div><div class="tl-label">体循环稳定</div></div>
-          <div class="tl-node"><div class="tl-dot b"></div><div class="tl-time">T+8h</div><div class="tl-label"><b>情境 B</b>保护右心</div></div>
+          <div class="tl-node"><div class="tl-dot a"></div><div class="tl-time">T+4.5h</div><div class="tl-label">体循环稳定</div></div>
+          <div class="tl-node"><div class="tl-dot b"></div><div class="tl-time">T+6h</div><div class="tl-label"><b>情境 B</b>保护右心</div></div>
           <div class="tl-node"><div class="tl-dot end"></div><div class="tl-time">T+24h</div><div class="tl-label">平稳过关</div></div>
         </div>
       </div>
@@ -1514,7 +1516,7 @@ blockquote.quote cite{
   </div>
   <div class="bridge-arrow">▼</div>
   <div class="bridge-body" style="font-size:14px;font-style:normal">
-    <strong>T + 8h</strong>：气道峰压开始上升，CVP 从 14 飙到 24，再次 POCUS……
+    <strong>T + 6h</strong>：气道峰压开始上升，CVP 从 14 飙到 24，再次 POCUS……
   </div>
 </div>
 
@@ -2285,7 +2287,7 @@ const MODE_CONFIG = {
     name: '情境 B + 回顾',
     issueLabel: 'Pre-Class Self-Study · 课前自学模块 · 建议用时 15 分钟 · 版本 2 · 第二次课（情境 B + A 期回顾）',
     title: '体外循环术后危象：<br>第二幕 · 保护右心',
-    subtitle: '上次课，你救了这位 70 岁的二次瓣膜置换病人——MAP 从 54 稳到 78，大出血控制住了。<strong>但你输了 4500 ml 液体。</strong>现在是术后 6 小时（T + 06:00），气道压在涨、CVP 在涨、尿量在掉。你回到病房接班——上次课布置的思考题，今天要变成现实。',
+    subtitle: '上次课，你救了这位 70 岁的二次瓣膜置换病人——MAP 从 54 稳到 78，大出血控制住了。<strong>但你输了 4500 ml 液体。</strong>现在是术后 7 小时（T + 06:00），气道压在涨、CVP 在涨、尿量在掉。你回到病房接班——上次课布置的思考题，今天要变成现实。',
     quizCount: 4,
     passScore: 3,
     pretestMinutes: 3,
