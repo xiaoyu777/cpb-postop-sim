@@ -748,6 +748,12 @@ blockquote.quote cite{
   font-family:'Source Serif 4',serif;font-size:15px;font-style:italic;
   color:#555;line-height:1.65;margin-bottom:28px;
 }
+.pm-intro{
+  font-family:'Source Sans 3',sans-serif;font-size:12.5px;line-height:1.6;
+  color:#777;margin:-16px 0 24px;padding-top:14px;border-top:1px dashed #d4d4d4;
+  text-align:left;
+}
+.pm-intro:empty{display:none}
 .pretest-modal .pm-actions{
   display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
 }
@@ -974,6 +980,9 @@ blockquote.quote cite{
     <div class="pm-score" id="pmScore">— / 8</div>
     <div class="pm-score-bar"><div class="pm-score-bar-fill" id="pmScoreBar"></div></div>
     <div class="pm-msg" id="pmMsg">—</div>
+        <!-- MODE_CONFIG.introMsg 原本就是为这里写的（§ 7 把它列为四个必须同步维护
+             的字段之一,描述为「模态结果框文案」）,但此前从未被任何代码读取。 -->
+        <div class="pm-intro" id="pmIntro"></div>
     <div class="pm-actions">
       <button class="pm-btn pm-btn-primary" onclick="startMainContent()">已了解 · 开始自学 →</button>
     </div>
@@ -1037,7 +1046,12 @@ blockquote.quote cite{
           <div class="tl-node"><div class="tl-dot"></div><div class="tl-time">T 0</div><div class="tl-label">转入 ICU<span style="display:block;font-weight:400;color:var(--ink-lighter);font-size:9.5px">术毕后 1h</span></div></div>
           <div class="tl-node"><div class="tl-dot a"></div><div class="tl-time">T+4h</div><div class="tl-label"><b>情境 A</b>休克告急</div></div>
           <div class="tl-node"><div class="tl-dot a"></div><div class="tl-time">T+4.5h</div><div class="tl-label">体循环稳定</div></div>
-          <div class="tl-node"><div class="tl-dot b"></div><div class="tl-time">T+6h</div><div class="tl-label"><b>情境 B</b>保护右心</div></div>
+          <!-- v2a 不能在页眉就看到「保护右心」——同一页页尾才向 v2a 学员抛出
+               「他的心脏、肺、肾会出什么问题」的悬念,学员往下滚 30 秒就先读到
+               了答案关键词。整节点复制而非在 label 里塞 span：.tl-label b 是
+               display:block,塞 inline span 会产生匿名块盒。 -->
+          <div class="tl-node" data-mode="v1 v2b"><div class="tl-dot b"></div><div class="tl-time">T+6h</div><div class="tl-label"><b>情境 B</b>保护右心</div></div>
+          <div class="tl-node" data-mode="v2a"><div class="tl-dot b"></div><div class="tl-time">T+6h</div><div class="tl-label"><b>第二次课</b>待揭晓</div></div>
           <div class="tl-node"><div class="tl-dot end"></div><div class="tl-time">T+24h</div><div class="tl-label">平稳过关</div></div>
         </div>
       </div>
@@ -1511,10 +1525,15 @@ blockquote.quote cite{
 </section>
 
 <!-- ==================== 过渡：A→B ====================
-     只在 v2b 显示。这张卡直接点破「A 期的液体导致 B 期」，在 v1 模式下
-     属于 CLAUDE.md § 1 的反模式——会毁掉模拟现场 B1 的多米诺顿悟。
-     v2b 本就在学员跑完 A 期之后，需要这种披露。 -->
-<div class="bridge" data-mode="v2b">
+     data-mode="v1 v2b"：凡是覆盖情境 B 的模式都显示,v2a 不含情境 B 故排除。
+     曾一度改成 v2b 专属,理由是「v1 下点破 A→B 属 § 1 反模式」——但那条界线
+     按字面执行与 M1 v1 的存在冲突：v1 有完整的情境 B 模块、学习目标与 4 道
+     B 期题,它必须教透因果，否则 v1 就没有 B1 教学了。§ 1 披露表要 M1 给出
+     「临床知识原则 + 决策点最佳答案」,保留至模拟的是因果链的**震撼时刻**——
+     是时刻，不是知识。M2 的 B1 让学员在四个选项里选，读过 M1 的 v1 学员必然
+     知道答案；那里的震撼从来不是「我不知道会这样」，而是「我做的正在我病人
+     身上发生」，即 § 1 自述的 Shows How。 -->
+<div class="bridge" data-mode="v1 v2b">
   <div class="bridge-title">Scenario Transition · 情境切换</div>
   <div class="bridge-body">
     情境 A 的胜利——MAP 稳定、引流控制——是用<strong>大量液体、FFP、血小板</strong>换来的。<br>
@@ -2174,7 +2193,7 @@ const questions = [
   },
   {
     scenario:'B',
-    q: 'iNO 使用 36 小时后病情稳定，准备撤机。最合理的做法是？',
+    q: 'iNO 已连续使用超过 24 小时，病情稳定，准备撤机。最合理的做法是？',
     options: [
       '直接停用，观察 4 小时',
       '一次减半：20→10 ppm，稳定 30 分钟后停',
@@ -2512,6 +2531,8 @@ function submitPretest(){
 
   document.getElementById('pmScore').textContent = score + ' / ' + total;
   document.getElementById('pmMsg').textContent = msgs[tier];
+  const _cfg = MODE_CONFIG[currentMode];
+  document.getElementById('pmIntro').textContent = (_cfg && _cfg.introMsg) || '';
   const tagEl = document.getElementById('pmTierTag');
   tagEl.textContent = tierLabels[tier];
   tagEl.className = 'pm-tier-tag ' + tierClasses[tier];
