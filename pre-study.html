@@ -255,6 +255,9 @@ h2{
   font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;color:var(--ink);
 }
 .snap-val.alert{color:var(--nejm-red);font-weight:700}
+  /* .improved 此前只有 markup 用、style 里无定义（§ 8「别把别的文件的类名
+     记忆套过来」）。5 处靠内联 color 顶着,一旦有人删内联就静默变回默认色。 */
+  .snap-val.improved{color:var(--nejm-teal);font-weight:600}
 .snap-val.alert::after{content:" ▲";font-size:10px}
 .snap-val.low::after{content:" ▼";font-size:10px;color:var(--nejm-red)}
 .snap-note{font-family:'Source Sans 3',sans-serif;font-size:11px;color:var(--ink-lighter);margin-top:2px}
@@ -1080,11 +1083,11 @@ blockquote.quote cite{
       <span class="time">你离开时</span>
     </div>
     <div class="snapshot-grid">
-      <div class="snap-item"><div class="snap-label">MAP</div><div class="snap-val improved" style="color:#006666">78 mmHg</div><div class="snap-note">从 54 回升</div></div>
-      <div class="snap-item"><div class="snap-label">CI 心排指数</div><div class="snap-val improved" style="color:#006666">2.4 L/min/m²</div><div class="snap-note">从 1.7 回升</div></div>
-      <div class="snap-item"><div class="snap-label">SvO2</div><div class="snap-val improved" style="color:#006666">68%</div><div class="snap-note">从 55% 回升</div></div>
-      <div class="snap-item"><div class="snap-label">去甲肾上腺素</div><div class="snap-val improved" style="color:#006666">0.3 μg/kg/min</div><div class="snap-note">从 0.8 减至 0.3</div></div>
-      <div class="snap-item"><div class="snap-label">引流</div><div class="snap-val improved" style="color:#006666">30 ml/h</div><div class="snap-note">从 280 降至 30</div></div>
+      <div class="snap-item"><div class="snap-label">MAP</div><div class="snap-val improved">78 mmHg</div><div class="snap-note">从 54 回升</div></div>
+      <div class="snap-item"><div class="snap-label">CI 心排指数</div><div class="snap-val improved">2.4 L/min/m²</div><div class="snap-note">从 1.7 回升</div></div>
+      <div class="snap-item"><div class="snap-label">SvO2</div><div class="snap-val improved">68%</div><div class="snap-note">从 55% 回升</div></div>
+      <div class="snap-item"><div class="snap-label">去甲肾上腺素</div><div class="snap-val improved">0.3 μg/kg/min</div><div class="snap-note">从 0.8 减至 0.3</div></div>
+      <div class="snap-item"><div class="snap-label">引流</div><div class="snap-val improved">30 ml/h</div><div class="snap-note">从 280 降至 30</div></div>
       <div class="snap-item"><div class="snap-label">累计输入</div><div class="snap-val" style="color:#c41230">约 4500 ml</div><div class="snap-note">FFP+PLT+晶体 · 2 小时累计</div></div>
     </div>
   </div>
@@ -1556,7 +1559,7 @@ blockquote.quote cite{
   <div class="domino-box">
     <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
       <!-- 标题 -->
-      <text x="340" y="24" text-anchor="middle" font-family="Source Serif 4" font-size="14" font-style="italic" fill="#555">从"救命"到"杀人"：六张骨牌倒下的 4 小时</text>
+      <text x="340" y="24" text-anchor="middle" font-family="Source Serif 4" font-size="14" font-style="italic" fill="#555">从"救命"到"杀人"：六张骨牌倒下的 2 小时</text>
 
       <!-- 六个骨牌节点 -->
       <defs>
@@ -1813,6 +1816,20 @@ blockquote.quote cite{
     <div class="result-msg" id="resultMsg"></div>
     <div class="result-cta" id="resultCta"></div>
   </div>
+
+  <!-- Pre-Post Design 的收尾产物（§ 7）。CSS 与 showPrePostCompare() 一直都在，
+       唯独这段 markup 从未写进 body——后测提交时 getElementById('ppPre') 返回
+       null，抛 TypeError，而该异常发生在 submitBtn.disabled = true 之前,
+       于是提交按钮也永远不会被禁用。前测页明文向学员承诺过「系统会自动显示你的
+       学习前后对比」,这是页面兑现不了的承诺。 -->
+  <div class="prepost-compare" id="prepostCompare">
+    <h4>Pre / Post Comparison · 学习前后对比</h4>
+    <div class="prepost-grid">
+      <div class="prepost-cell"><div class="pc-val" id="ppPre">—</div><div class="pc-key">前测 Pre-Test</div></div>
+      <div class="prepost-cell"><div class="pc-val" id="ppPost">—</div><div class="pc-key">后测 Post-Test</div></div>
+      <div class="prepost-cell gain"><div class="pc-val" id="ppGain">—</div><div class="pc-key">进步 Gain</div></div>
+    </div>
+  </div>
 </section>
 <!-- ==================== 课后思考题 · v2a 模式专属 ==================== -->
 <section class="section" id="post-think" data-mode="v2a" style="background:linear-gradient(180deg,#fff 0%,#fff8e7 100%);border-top:4px solid #b8860b;margin-top:30px">
@@ -1838,7 +1855,7 @@ blockquote.quote cite{
   </p>
 
   <p>
-    在第二次课开始前，你会收到一份新的学习材料（M1-B 链接），那时再来对照你这 1-2 周的观察。
+    在第二次课开始前，你会收到第二次课的课前自学链接，那时再来对照你这 1-2 周的观察。
   </p>
 </section>
 
@@ -1910,6 +1927,10 @@ window.addEventListener('scroll',()=>{
   progress.style.width = Math.min(100,pct) + '%';
   let current = 'sc-a';
   sections.forEach(s => {
+    // 被模式隐藏的节 getBoundingClientRect() 恒返回全 0,必然满足 top<180,
+    // 又因 forEach 后者覆盖前者,current 会被钉死在最后一个隐藏节上——
+    // 实测三个模式的目录高亮因此全是死的。applyMode 用内联 style 做显隐。
+    if(s.style.display === 'none') return;
     const rect = s.getBoundingClientRect();
     if(rect.top < 180) current = s.id;
   });
@@ -2124,7 +2145,7 @@ const questions = [
   // —— B 情境 ——
   {
     scenario:'B',
-    q: `情境 B：情境 A 干预 4 小时后，气道峰压升至 35、CVP 从 14 升至 <span class="data">24 mmHg</span>、POCUS 见 RV 扩张伴 D 字征，尿量为零、血钾升高。机制链条中<strong>最可能的起点</strong>是？`,
+    q: `情境 B：情境 A 干预约 2 小时后，气道峰压升至 35、CVP 从 14 升至 <span class="data">24 mmHg</span>、POCUS 见 RV 扩张伴 D 字征，尿量为零、血钾升高。机制链条中<strong>最可能的起点</strong>是？`,
     options: [
       '情境 A 大量液体输入 → 肺渗出 → 气道高压 → PVR 骤升 → 急性右心衰',
       '新发冠脉事件导致右心梗死',
@@ -2211,7 +2232,7 @@ function renderPostQuiz(){
       btn.classList.add('sel');
       userAnswers[qIdx] = oIdx;
       document.getElementById('answered').textContent = Object.keys(userAnswers).length;
-      document.getElementById('submitBtn').disabled = Object.keys(userAnswers).length !== (window.__currentQuizCount || 8);
+      document.getElementById('submitBtn').disabled = Object.keys(userAnswers).length !== (window.__currentQuizCount || getActiveQuestions().length);
     });
   });
 }
@@ -2243,9 +2264,9 @@ document.getElementById('submitBtn').addEventListener('click',()=>{
   const rs = document.getElementById('resultScore');
   const rm = document.getElementById('resultMsg');
   const rc = document.getElementById('resultCta');
-  const total = (window.__currentQuizCount || 8);
+  const total = (window.__currentQuizCount || getActiveQuestions().length);
   rs.textContent = score + ' / ' + total;
-  const passScore = (window.__currentPassScore || 6);
+  const passScore = (window.__currentPassScore || Math.ceil(getActiveQuestions().length*0.75));
   if(score >= passScore){
     result.classList.add('show','pass');
     rm.innerHTML = '<strong style="color:#006666">通过 · 已解锁现场模拟资格</strong>';
@@ -2459,7 +2480,7 @@ function pickPretest(q, v, el){
   pretestAnswers[q] = v;
   const count = Object.keys(pretestAnswers).length;
   document.getElementById('ptAnswered').textContent = count;
-  const required = window.__currentQuizCount || 8;
+  const required = window.__currentQuizCount || getActiveQuestions().length;
   document.getElementById('ptSubmitBtn').disabled = count < required;
 }
 
@@ -2511,8 +2532,10 @@ function startMainContent(){
 function showPrePostCompare(postScore){
   if(pretestScore === null) return;
   const el = document.getElementById('prepostCompare');
-  document.getElementById('ppPre').textContent = pretestScore + '/8';
-  document.getElementById('ppPost').textContent = postScore + '/8';
+  if(!el) return;                                   // 缺 markup 时静默跳过,不要连累后面的 disabled
+  const total = getActiveQuestions().length;        // § 7：分母不得硬编码 /8
+  document.getElementById('ppPre').textContent = pretestScore + '/' + total;
+  document.getElementById('ppPost').textContent = postScore + '/' + total;
   const gain = postScore - pretestScore;
   document.getElementById('ppGain').textContent = (gain >= 0 ? '+' : '') + gain;
   el.classList.add('show');
